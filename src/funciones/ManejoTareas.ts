@@ -1,0 +1,1 @@
+// Solo van funciones puras en este archivo
