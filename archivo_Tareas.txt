@@ -1,0 +1,22 @@
+[
+  {
+    "id": 48152,
+    "titulo": "Tarea[48152]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "19/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "29/11/2025"
+  },
+  {
+    "id": 23588,
+    "titulo": "Tarea[23588]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "19/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "29/11/2025"
+  }
+]
