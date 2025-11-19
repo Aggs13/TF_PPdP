@@ -4,6 +4,7 @@ exports.nuevaTarea = nuevaTarea;
 exports.validarDificultad = validarDificultad;
 exports.validarEstado = validarEstado;
 exports.establecerVencimiento = establecerVencimiento;
+exports.agregarTareaArray = agregarTareaArray;
 const Tarea_1 = require("../clases/Tarea");
 // leer archivo donde van las tareas
 function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad) {
@@ -25,4 +26,7 @@ function establecerVencimiento(dias, fecha) {
     const fechaVencimiento = new Date(fecha.getTime());
     fechaVencimiento.setDate(fechaVencimiento.getDate() + diasVencimiento);
     return fechaVencimiento.toLocaleDateString("es-AR");
+}
+function agregarTareaArray(newTarea, lista) {
+    return [...lista, newTarea];
 }

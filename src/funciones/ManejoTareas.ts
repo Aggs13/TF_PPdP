@@ -32,3 +32,8 @@ export function establecerVencimiento(dias:string,fecha:Date){
     fechaVencimiento.setDate(fechaVencimiento.getDate() + diasVencimiento);
     return fechaVencimiento.toLocaleDateString("es-AR");
 }
+
+
+export function agregarTareaArray(newTarea:Tarea,lista:Tarea[]){
+    return [...lista, newTarea];
+}

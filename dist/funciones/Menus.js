@@ -10,11 +10,12 @@ const promptSync = require("prompt-sync");
 const fs = require("fs");
 const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
-const almacenTareas = new AlmacenTareas_1.AlmacenTareas;
-let array_tareas = almacenTareas.list_tareas;
 const txt = path.join(__dirname);
 const tareas_path = path_txt(txt);
 const prompt = promptSync();
+const almacenTareas = new AlmacenTareas_1.AlmacenTareas;
+let array_tareas = almacenTareas.list_tareas;
+array_tareas = JSON.parse(fs.readFileSync(tareas_path, "utf-8"));
 function menu_principal() {
     let op;
     do {
@@ -82,6 +83,7 @@ function menuNuevaTarea(id, edit) {
     const dias = prompt("Dias: ") || "10";
     const vencimiento = (0, ManejoTareas_1.establecerVencimiento)(dias, new Date());
     const tarea = (0, ManejoTareas_1.nuevaTarea)(newId, titulo, desc, estado, creacion, ultimaEdicion, vencimiento, dificultad);
-    array_tareas.push(tarea);
+    // TEMPORAL
+    array_tareas = (0, ManejoTareas_1.agregarTareaArray)(tarea, array_tareas);
     fs.writeFileSync(tareas_path, JSON.stringify(array_tareas, null, 2));
 }

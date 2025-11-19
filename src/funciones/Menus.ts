@@ -1,5 +1,5 @@
 // solo funciones para los menus
-import { nuevaTarea,validarDificultad,validarEstado,establecerVencimiento } from "./ManejoTareas";
+import { nuevaTarea,validarDificultad,validarEstado,establecerVencimiento,agregarTareaArray } from "./ManejoTareas";
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
@@ -7,12 +7,15 @@ import path = require("path");
 import { Tarea } from "../clases/Tarea";
 import { AlmacenTareas } from "../clases/AlmacenTareas";
 
-const almacenTareas = new AlmacenTareas;
-let array_tareas = almacenTareas.list_tareas
+
 
 const txt:string = path.join(__dirname)
 const tareas_path = path_txt(txt)
 const prompt = promptSync();
+
+const almacenTareas = new AlmacenTareas;
+let array_tareas = almacenTareas.list_tareas
+array_tareas = JSON.parse(fs.readFileSync(tareas_path,"utf-8"))
 
 export function menu_principal(){
     let op:string | null;    
@@ -102,6 +105,7 @@ export function menuNuevaTarea(id:number,edit:boolean){
     const vencimiento:string = establecerVencimiento(dias,new Date());
 
     const tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad);
-    array_tareas.push(tarea)
+
+    array_tareas = agregarTareaArray(tarea,array_tareas)
     fs.writeFileSync(tareas_path,JSON.stringify(array_tareas, null, 2))
 }
