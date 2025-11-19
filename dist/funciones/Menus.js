@@ -44,12 +44,15 @@ function menu_principal() {
                 break;
             case "3":
                 limpiarPantalla();
+                prompt("voler [ENTER] > ");
                 break;
             case "4":
                 limpiarPantalla();
+                prompt("voler [ENTER] > ");
                 break;
             case "5":
                 limpiarPantalla();
+                prompt("voler [ENTER] > ");
                 break;
             case "0":
                 limpiarPantalla();
@@ -82,8 +85,8 @@ function menuNuevaTarea(id, edit) {
     console.log("En cuantos dias vence? ");
     const dias = prompt("Dias: ") || "10";
     const vencimiento = (0, ManejoTareas_1.establecerVencimiento)(dias, new Date());
-    const tarea = (0, ManejoTareas_1.nuevaTarea)(newId, titulo, desc, estado, creacion, ultimaEdicion, vencimiento, dificultad);
-    // TEMPORAL
+    const papelera = false;
+    const tarea = (0, ManejoTareas_1.nuevaTarea)(newId, titulo, desc, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera);
     array_tareas = (0, ManejoTareas_1.agregarTareaArray)(tarea, array_tareas);
     fs.writeFileSync(tareas_path, JSON.stringify(array_tareas, null, 2));
 }

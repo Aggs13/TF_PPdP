@@ -17,10 +17,9 @@ const almacenTareas = new AlmacenTareas;
 let array_tareas = almacenTareas.list_tareas
 array_tareas = JSON.parse(fs.readFileSync(tareas_path,"utf-8"))
 
+
 export function menu_principal(){
     let op:string | null;    
-
-
 
     do {
         limpiarPantalla()
@@ -52,14 +51,17 @@ export function menu_principal(){
 
             case "3":
                 limpiarPantalla()
+                prompt("voler [ENTER] > ");
             break;
 
             case "4":
                 limpiarPantalla()
+                prompt("voler [ENTER] > ");
             break;
 
             case "5":
                 limpiarPantalla()
+                prompt("voler [ENTER] > ");
             break;
 
             case "0":
@@ -104,7 +106,9 @@ export function menuNuevaTarea(id:number,edit:boolean){
     const dias:string =  prompt("Dias: ") || "10";
     const vencimiento:string = establecerVencimiento(dias,new Date());
 
-    const tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad);
+    const papelera:boolean = false 
+
+    const tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad,papelera);
 
     array_tareas = agregarTareaArray(tarea,array_tareas)
     fs.writeFileSync(tareas_path,JSON.stringify(array_tareas, null, 2))

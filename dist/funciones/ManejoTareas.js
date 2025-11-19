@@ -7,8 +7,8 @@ exports.establecerVencimiento = establecerVencimiento;
 exports.agregarTareaArray = agregarTareaArray;
 const Tarea_1 = require("../clases/Tarea");
 // leer archivo donde van las tareas
-function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad) {
-    const tarea = new Tarea_1.Tarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad);
+function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera) {
+    const tarea = new Tarea_1.Tarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera);
     return tarea;
 }
 function validarDificultad(dificultadOpcion) {

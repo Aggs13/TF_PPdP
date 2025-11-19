@@ -10,7 +10,8 @@ class Tarea {
     creacion;
     ultima_Edicion;
     vencimiento;
-    constructor(id, titulo, descripcion, estado, creacion, ultima_Edicion, vencimiento, dificultad) {
+    papelera;
+    constructor(id, titulo, descripcion, estado, creacion, ultima_Edicion, vencimiento, dificultad, papelera) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -19,6 +20,7 @@ class Tarea {
         this.ultima_Edicion = ultima_Edicion;
         this.vencimiento = vencimiento;
         this.dificultad = dificultad;
+        this.papelera = papelera;
     }
 }
 exports.Tarea = Tarea;
