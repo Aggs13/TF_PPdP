@@ -1,9 +1,12 @@
 import { Tarea } from "./Tarea"
 export class AlmacenTareas {
 
-    public list_tareas:Tarea[];
+    public list_tareas?:Tarea[];
 
-    constructor(){
-        this.list_tareas = [];
-    }
+    constructor() {};
+
+  
 }
+
+
+export const almacenTareas = new AlmacenTareas();

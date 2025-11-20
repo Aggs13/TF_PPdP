@@ -1,5 +1,5 @@
 // solo funciones para los menus
-
+import { AlmacenTareas } from "../clases/AlmacenTareas";
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 
