@@ -1,5 +1,5 @@
 // solo funciones para los menus
-import { nuevaTarea,validarDificultad,validarEstado,establecerVencimiento,agregarTareaArray } from "./ManejoTareas";
+import { nuevaTarea,validarDificultad,validarEstado,establecerVencimiento,agregarTareaArray } from "./Reportes";
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
