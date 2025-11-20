@@ -18,7 +18,7 @@ export class Tarea{
         this.ultima_Edicion = ultima_Edicion;
         this.vencimiento = vencimiento;
         this.dificultad = dificultad;
-        this.papelera = papelera
+        this.papelera = papelera;
     }
 
 }
