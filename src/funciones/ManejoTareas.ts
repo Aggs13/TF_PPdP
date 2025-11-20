@@ -1,6 +1,7 @@
 // Solo van funciones puras en este archivo
 import path = require("path");
 import { Tarea } from "../clases/Tarea";
+import { AlmacenTareas } from "../clases/AlmacenTareas";
 // leer archivo donde van las tareas
 
 
