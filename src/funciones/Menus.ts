@@ -1,4 +1,4 @@
-// solo funciones para los menus
+// solo menu principal
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
@@ -6,21 +6,15 @@ import * as fs from "fs";
 import * as inquirer from "inquirer";
 import path = require("path");
 import {almacenTareas  } from "../clases/AlmacenTareas";
-import { Tarea } from "../clases/Tarea";
 import { menuNuevaTarea } from "./menus_carpeta/nueva_tarea_menu";
-import { moverPapelera, quitarPapelera } from "./Reportes";
-
-
-export const txt_path = obtener_path()
+import { cargarTareas, limpiarPantalla } from "./funciones_sistema";
+import { menuMoverAPalera, menuPapelera } from "./menus_carpeta/papelera_menu";
 const prompt = promptSync();
-const cargadas = JSON.parse(fs.readFileSync(txt_path,"utf-8"));
 
-for (const t of cargadas) {
-    almacenTareas.agregar(t);
-}
 
+cargarTareas();
 export async function menu_principal(){
-    let op:string|null;    
+    let op:string;    
     
     do {
         limpiarPantalla();
@@ -30,6 +24,7 @@ export async function menu_principal(){
 
             case "1":
                 limpiarPantalla();
+                console.log("TAREAS")
                 const tareas = almacenTareas.getTareas.filter(t => t.papelera == false);
                 console.table(tareas,["id", "titulo", "estado", "vencimiento"]);
                 prompt("voler [ENTER] > ");
@@ -37,29 +32,34 @@ export async function menu_principal(){
 
             case "2":
                 limpiarPantalla();
+                console.log("NUEVA TAREA")
                 const id:number = parseInt(crypto.randomUUID().slice(0, 4), 16);
                 menuNuevaTarea(id,false);
             break;
 
             case "3":
                 limpiarPantalla();
+                console.log("EDITAR")
                 prompt("voler [ENTER] > ");
             break;
 
             case "4":
                 limpiarPantalla();
+                console.log("BUSCAR")
                 prompt("voler [ENTER] > ");
             break;
 
             case "5":
                 limpiarPantalla();
-                menuMoverQuitarPapelera(false)
+                console.log("PAPELERA")
+                await menuPapelera()
                 prompt("voler [ENTER] > ");
             break;
 
             case "6":
                 limpiarPantalla();
-                menuMoverQuitarPapelera(true);
+                console.log("ELIMINAR")
+                menuMoverAPalera()
                 prompt("voler [ENTER] > ");
             break;
 
@@ -90,47 +90,5 @@ async function menu() {
     }
   ]);
   return opcion;
-}
-
-
-function menuMoverQuitarPapelera(accion:boolean){
-
-    if(accion){
-        
-        console.table(almacenTareas.getTareas.filter(t => t.papelera == false),["id", "titulo", "estado", "vencimiento"]);
-        const idTarea:string = prompt("Ingrese el ID > ");
-        const tareasActuales = almacenTareas.getTareas;
-        const nuevoArray = moverPapelera(idTarea,tareasActuales);
-        almacenTareas.setTareas = nuevoArray;
-        fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2));
-
-    }else{
-
-        console.table(almacenTareas.getTareas.filter(t => t.papelera == true),["id", "titulo", "estado", "vencimiento"]);
-        const idTarea:string = prompt("Ingrese el ID >");
-        const tareasActuales = almacenTareas.getTareas;
-        const nuevoArray = quitarPapelera(idTarea,tareasActuales);
-        almacenTareas.setTareas = nuevoArray;
-        fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2));
-
-    }
-}
-
-
-
-// funciones generales
-function limpiarPantalla() {
-    process.stdout.write('\x1Bc'); 
-}
-
-export function obtener_path(){
-    const txt:string = path.join(__dirname);
-    const txt_path = path_txt(txt);
-    return txt_path;
-}
-
-export function path_txt(txt_path:string){
-    const texto = path.join(txt_path,"../../archivo_Tareas.txt");
-    return texto;
 }
 

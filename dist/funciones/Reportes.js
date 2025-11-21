@@ -6,6 +6,7 @@ exports.validarEstado = validarEstado;
 exports.establecerVencimiento = establecerVencimiento;
 exports.moverPapelera = moverPapelera;
 exports.quitarPapelera = quitarPapelera;
+exports.vaciarPapelera = vaciarPapelera;
 const Tarea_1 = require("../clases/Tarea");
 function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera) {
     const tarea = new Tarea_1.Tarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera);
@@ -38,5 +39,10 @@ function quitarPapelera(id, tareas) {
     return tareas.map(t => {
         return t.id == parseInt(id) ? { ...t, papelera: false } : t;
     });
+}
+// vaciar papelera 
+function vaciarPapelera(tareas) {
+    const nuevo_array = tareas.filter(t => t.papelera == false);
+    return nuevo_array;
 }
 // condicion ? valor_si_true : valor_si_false

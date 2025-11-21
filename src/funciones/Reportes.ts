@@ -47,4 +47,11 @@ export function quitarPapelera(id:string,tareas:Tarea[]){
     })
 }
 
+
+// vaciar papelera 
+export function vaciarPapelera(tareas:Tarea[]){
+    const nuevo_array = tareas.filter(t => t.papelera == false);
+    return nuevo_array;
+}
+
 // condicion ? valor_si_true : valor_si_false
