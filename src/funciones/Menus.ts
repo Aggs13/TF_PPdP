@@ -18,7 +18,6 @@ for (const t of cargadas) {
 
 }
 
-
 export async function menu_principal(){
     let op:string|null;    
     
@@ -51,7 +50,13 @@ export async function menu_principal(){
                 prompt("voler [ENTER] > ");
             break;
 
+
             case "5":
+                limpiarPantalla()
+                prompt("voler [ENTER] > ");
+            break;
+
+            case "6":
                 limpiarPantalla()
                 prompt("voler [ENTER] > ");
             break;
@@ -76,7 +81,8 @@ async function menu() {
       { name: "Nueva tarea ", value: "2" },
       { name: "Editar      ", value: "3" },
       { name: "Buscar      ", value: "4" },
-      { name: "Eliminar    ", value: "5" },
+      { name: "Papelera    ", value: "5" },
+      { name: "Eliminar    ", value: "6" },
       { name: "Salir       ", value: "0"}
       ]
     }
