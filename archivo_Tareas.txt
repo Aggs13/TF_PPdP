@@ -1,29 +1,7 @@
 [
   {
-    "id": 8211,
-    "titulo": "Tarea[8211]",
-    "descripcion": "",
-    "estado": "Pendiente",
-    "dificultad": "Facil",
-    "creacion": "20/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "30/11/2025",
-    "papelera": false
-  },
-  {
-    "id": 46411,
-    "titulo": "Tarea[46411]",
-    "descripcion": "",
-    "estado": "Pendiente",
-    "dificultad": "Facil",
-    "creacion": "20/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "30/11/2023",
-    "papelera": true
-  },
-  {
-    "id": 57495,
-    "titulo": "Tarea[57495]",
+    "id": 20363,
+    "titulo": "Tarea[20363]",
     "descripcion": "",
     "estado": "Pendiente",
     "dificultad": "Facil",
@@ -31,16 +9,5 @@
     "ultima_Edicion": "",
     "vencimiento": "1/12/2025",
     "papelera": false
-  },
-  {
-    "id": 51503,
-    "titulo": "www",
-    "descripcion": "www",
-    "estado": "Terminado",
-    "dificultad": "Normal",
-    "creacion": "21/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "26/11/2025",
-    "papelera": true
   }
 ]

@@ -1,13 +1,13 @@
 import { validarDificultad,validarEstado,establecerVencimiento,nuevaTarea } from "../Reportes";
 import { Tarea } from "../../clases/Tarea";
 import { almacenTareas } from "../../clases/AlmacenTareas";
-import { txt_path } from "../Menus";
 import path = require("path");
-import { path_txt } from "../Menus";
 
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
+import { obtener_path } from "../funciones_sistema";
+
 
 
 
@@ -23,7 +23,7 @@ export function menuNuevaTarea(id:number,edit:boolean){
 
     const tarea:Tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad,papelera);
     almacenTareas.agregar(tarea)
-    fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2))
+    fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas,null, 2))
 
 }
 
