@@ -1,3 +1,39 @@
-archivo_Tareas.txt
+### Dependencias y Build ###
+
+# Directorio de módulos de Node (Dependencias)
 /node_modules
-node_modules/.package-lock.json
+
+# Directorio de distribución/build (código compilado)
+/dist
+/build
+/out
+
+### Archivos de Pruebas y Logs ###
+
+# Logs generados por el sistema (si existen)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+### Entorno y Configuración Local ###
+
+# Variables de entorno secretas (¡CRUCIALES!)
+.env
+.env.*
+.local
+
+# Archivos de caché del SO y editores
+.DS_Store # macOS
+Thumbs.db # Windows
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+### Archivos Específicos de Usuario ###
+
+# Si tienes archivos de datos temporales o de prueba (como el que mencionaste)
+# que NO deben subirse al repositorio, añádelos aquí.
+
+# Ejemplo (si no quieres que nadie más tenga este archivo)
+archivo_Tareas.txt
