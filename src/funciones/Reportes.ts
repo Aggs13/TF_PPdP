@@ -1,8 +1,7 @@
 // Solo van funciones puras en este archivo
 import path = require("path");
 import { Tarea } from "../clases/Tarea";
-// leer archivo donde van las tareas
-
+import { almacenTareas } from "../clases/AlmacenTareas";
 
 
 export function nuevaTarea(id:number,titulo: string,descripcion: string, estado: string , creacion: string, ultimaEdicion: string, vencimiento: string ,dificultad: string,papelera:boolean){
@@ -37,3 +36,18 @@ export function establecerVencimiento(dias:string,fecha:Date){
 export function agregarTareaArray(newTarea:Tarea,lista:Tarea[]){
     return [...lista, newTarea];
 }
+// Mover a la papelera
+export function moverPapelera(id:string,tareas:Tarea[]){
+    return tareas.map(t => {
+       return t.id == parseInt(id) ? {...t, papelera:true} : t
+    })
+}
+
+// Quitar de papelera
+export function quitarPapelera(id:string,tareas:Tarea[]){
+    return tareas.map(t => {
+       return t.id == parseInt(id) ? {...t, papelera:false} : t
+    })
+}
+
+// condicion ? valor_si_true : valor_si_false
