@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.menu_principal = menu_principal;
 exports.path_txt = path_txt;
 // @ts-ignore
+const inquirer = require("inquirer");
+// @ts-ignore
 const promptSync = require("prompt-sync");
 const fs = require("fs");
 const path = require("path");
@@ -11,25 +13,18 @@ const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
 const prompt = promptSync();
 const txt_path = obtener_path();
 const cargadas = JSON.parse(fs.readFileSync(txt_path, "utf-8"));
-AlmacenTareas_1.array_tareas.push(...cargadas);
-function menu_principal() {
+for (const t of cargadas) {
+    AlmacenTareas_1.almacenTareas.agregar(t);
+}
+async function menu_principal() {
     let op;
     do {
         limpiarPantalla();
-        console.log();
-        console.log("┌────────────────────┐");
-        console.log("│ [1]-Ver tareas     │");
-        console.log("│ [2]-Nueva tarea    │");
-        console.log("│ [3]-Editar         │");
-        console.log("│ [4]-Buscar         │");
-        console.log("│ [5]-Eliminar       │");
-        console.log("│ [0]-Salir          │");
-        console.log("└────────────────────┘");
-        op = prompt("Elige una opcion > ");
+        op = await menu();
         switch (op) {
             case "1":
                 limpiarPantalla();
-                console.table(AlmacenTareas_1.array_tareas, ["id", "titulo", "estado", "vencimiento"]);
+                console.table(AlmacenTareas_1.almacenTareas.getTareas, ["id", "titulo", "estado", "vencimiento"]);
                 prompt("voler [ENTER] > ");
                 break;
             case "2":
@@ -67,4 +62,22 @@ function obtener_path() {
 function path_txt(txt_path) {
     const texto = path.join(txt_path, "../../archivo_Tareas.txt");
     return texto;
+}
+async function menu() {
+    const { opcion } = await inquirer.prompt([
+        {
+            type: "list",
+            name: "opcion",
+            message: "> Elige una opción:",
+            choices: [
+                { name: "Ver tareas  ", value: "1" },
+                { name: "Nueva tarea ", value: "2" },
+                { name: "Editar      ", value: "3" },
+                { name: "Buscar      ", value: "4" },
+                { name: "Eliminar    ", value: "5" },
+                { name: "Salir       ", value: "0" }
+            ]
+        }
+    ]);
+    return opcion;
 }

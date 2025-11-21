@@ -1,6 +1,7 @@
 import { validarDificultad,validarEstado,establecerVencimiento,nuevaTarea } from "../Reportes";
 import { Tarea } from "../../clases/Tarea";
-import { array_tareas } from "../../clases/AlmacenTareas";
+import { almacenTareas } from "../../clases/AlmacenTareas";
+
 import path = require("path");
 import { path_txt } from "../Menus";
 
@@ -8,9 +9,7 @@ import { path_txt } from "../Menus";
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
 
-const txt:string = path.join(__dirname)
-const txt_path = path_txt(txt)
-const prompt = promptSync();
+
 
 export function menuNuevaTarea(id:number,edit:boolean){
 
@@ -23,10 +22,12 @@ export function menuNuevaTarea(id:number,edit:boolean){
     const papelera:boolean = false 
 
     const tarea:Tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad,papelera);
-    array_tareas.push(tarea)
-    fs.writeFileSync(txt_path, JSON.stringify(array_tareas,null, 2))
+    almacenTareas.agregar(tarea)
+    fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2))
 
 }
+
+
 
 function validaciones(){
 
@@ -47,3 +48,7 @@ function validaciones(){
 
     return {dificultad, estado, vencimiento}
 }
+
+const txt:string = path.join(__dirname)
+const txt_path = path_txt(txt)
+const prompt = promptSync();
