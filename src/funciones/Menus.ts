@@ -1,14 +1,12 @@
-// solo funciones para los menus
+// solo menu principal
 // @ts-ignore
 const inquirer = require("inquirer");
 // @ts-ignore
 import * as promptSync from "prompt-sync";
-import * as fs from "fs";
 import {almacenTareas  } from "../clases/AlmacenTareas";
 import { menuNuevaTarea } from "./menus_carpeta/nueva_tarea_menu";
-import { cargarTareas, limpiarPantalla,obtener_path } from "./funciones_sistema";
-import { menuMoverQuitarPapelera } from "./menus_carpeta/papelera_menu";
-
+import { cargarTareas, limpiarPantalla } from "./funciones_sistema";
+import { menuMoverAPalera, menuPapelera } from "./menus_carpeta/papelera_menu";
 const prompt = promptSync();
 
 
@@ -52,14 +50,14 @@ export async function menu_principal(){
             case "5":
                 limpiarPantalla();
                 console.log("PAPELERA")
-                menuMoverQuitarPapelera(false)
+                await menuPapelera()
                 prompt("voler [ENTER] > ");
             break;
 
             case "6":
                 limpiarPantalla();
                 console.log("ELIMINAR")
-                menuMoverQuitarPapelera(true);
+                menuMoverAPalera()
                 prompt("voler [ENTER] > ");
             break;
 
@@ -91,8 +89,4 @@ async function menu() {
   ]);
   return opcion;
 }
-
-
-
-// funciones generales
 

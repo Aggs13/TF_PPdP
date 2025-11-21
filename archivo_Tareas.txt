@@ -8,6 +8,39 @@
     "creacion": "21/11/2025",
     "ultima_Edicion": "",
     "vencimiento": "1/12/2025",
+    "papelera": true
+  },
+  {
+    "id": 7797,
+    "titulo": "Tarea[7797]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "21/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "1/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 14186,
+    "titulo": "Tarea[14186]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "21/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "1/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 55263,
+    "titulo": "Tarea[55263]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "21/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "1/12/2025",
     "papelera": false
   }
 ]

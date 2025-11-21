@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.menu_principal = menu_principal;
-// solo funciones para los menus
+// solo menu principal
 // @ts-ignore
 const inquirer = require("inquirer");
 // @ts-ignore
@@ -44,13 +44,13 @@ async function menu_principal() {
             case "5":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("PAPELERA");
-                (0, papelera_menu_1.menuMoverQuitarPapelera)(false);
+                await (0, papelera_menu_1.menuPapelera)();
                 prompt("voler [ENTER] > ");
                 break;
             case "6":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("ELIMINAR");
-                (0, papelera_menu_1.menuMoverQuitarPapelera)(true);
+                (0, papelera_menu_1.menuMoverAPalera)();
                 prompt("voler [ENTER] > ");
                 break;
             case "0":
@@ -78,4 +78,3 @@ async function menu() {
     ]);
     return opcion;
 }
-// funciones generales
