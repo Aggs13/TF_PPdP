@@ -1,16 +1,16 @@
 ### Dependencias y Build ###
 
-# Directorio de módulos de Node (Dependencias)
+# Directorio de módulos de Node 
 /node_modules
 
-# Directorio de distribución/build (código compilado)
+# Directorio de distribución/build 
 /dist
 /build
 /out
 
 ### Archivos de Pruebas y Logs ###
 
-# Logs generados por el sistema (si existen)
+# Logs generados por el sistema 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -18,7 +18,7 @@ lerna-debug.log*
 
 ### Entorno y Configuración Local ###
 
-# Variables de entorno secretas (¡CRUCIALES!)
+# Variables de entorno secretas
 .env
 .env.*
 .local
@@ -32,8 +32,8 @@ Thumbs.db # Windows
 
 ### Archivos Específicos de Usuario ###
 
-# Si tienes archivos de datos temporales o de prueba (como el que mencionaste)
+# Si tienes archivos de datos temporales o de prueba
 # que NO deben subirse al repositorio, añádelos aquí.
 
-# Ejemplo (si no quieres que nadie más tenga este archivo)
+# Ejemplo 
 archivo_Tareas.txt
