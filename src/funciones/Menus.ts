@@ -9,6 +9,7 @@ import {almacenTareas  } from "../clases/AlmacenTareas";
 import { Tarea } from "../clases/Tarea";
 import { menuNuevaTarea } from "./menus_carpeta/nueva_tarea_menu";
 import { moverPapelera, quitarPapelera } from "./Reportes";
+import { buscarTarea } from "./menus_carpeta/buscar_tarea_menu";
 
 
 export const txt_path = obtener_path()
@@ -24,7 +25,7 @@ export async function menu_principal(){
     
     do {
         limpiarPantalla();
-        op = await menu();
+         op = await menu();
         
         switch (op){
 
@@ -48,6 +49,7 @@ export async function menu_principal(){
 
             case "4":
                 limpiarPantalla();
+                await buscarTarea();
                 prompt("voler [ENTER] > ");
             break;
 
@@ -119,7 +121,7 @@ function menuMoverQuitarPapelera(accion:boolean){
 
 
 // funciones generales
-function limpiarPantalla() {
+export function limpiarPantalla() {
     process.stdout.write('\x1Bc'); 
 }
 

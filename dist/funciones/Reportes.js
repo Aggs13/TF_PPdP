@@ -4,9 +4,15 @@ exports.nuevaTarea = nuevaTarea;
 exports.validarDificultad = validarDificultad;
 exports.validarEstado = validarEstado;
 exports.establecerVencimiento = establecerVencimiento;
+exports.agregarTareaArray = agregarTareaArray;
 exports.moverPapelera = moverPapelera;
 exports.quitarPapelera = quitarPapelera;
+exports.buscarTareaTitulo = buscarTareaTitulo;
+exports.buscarID = buscarID;
+exports.buscarEstado = buscarEstado;
+exports.buscarDificultad = buscarDificultad;
 const Tarea_1 = require("../clases/Tarea");
+const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera) {
     const tarea = new Tarea_1.Tarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera);
     return tarea;
@@ -27,6 +33,9 @@ function establecerVencimiento(dias, fecha) {
     fechaVencimiento.setDate(fechaVencimiento.getDate() + diasVencimiento);
     return fechaVencimiento.toLocaleDateString("es-AR");
 }
+function agregarTareaArray(newTarea, lista) {
+    return [...lista, newTarea];
+}
 // Mover a la papelera
 function moverPapelera(id, tareas) {
     return tareas.map(t => {
@@ -40,3 +49,20 @@ function quitarPapelera(id, tareas) {
     });
 }
 // condicion ? valor_si_true : valor_si_false
+//Buscar Tarea
+//Buscar por Titulo
+function buscarTareaTitulo(titulo) {
+    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.titulo.toLowerCase().includes(titulo.toLowerCase()));
+}
+//Buscar por ID
+function buscarID(id) {
+    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.id === id);
+}
+//Buscar por Estado
+function buscarEstado(estado) {
+    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.estado === estado);
+}
+//Buscar por Dificultad
+function buscarDificultad(dificultad) {
+    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.dificultad === dificultad);
+}

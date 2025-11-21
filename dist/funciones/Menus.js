@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.txt_path = void 0;
 exports.menu_principal = menu_principal;
+exports.limpiarPantalla = limpiarPantalla;
 exports.obtener_path = obtener_path;
 exports.path_txt = path_txt;
 // solo funciones para los menus
@@ -14,6 +15,7 @@ const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
 const Reportes_1 = require("./Reportes");
+const buscar_tarea_menu_1 = require("./menus_carpeta/buscar_tarea_menu");
 exports.txt_path = obtener_path();
 const prompt = promptSync();
 const cargadas = JSON.parse(fs.readFileSync(exports.txt_path, "utf-8"));
@@ -43,6 +45,7 @@ async function menu_principal() {
                 break;
             case "4":
                 limpiarPantalla();
+                await (0, buscar_tarea_menu_1.buscarTarea)();
                 prompt("voler [ENTER] > ");
                 break;
             case "5":

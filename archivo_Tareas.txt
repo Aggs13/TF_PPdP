@@ -1,0 +1,13 @@
+[
+  {
+    "id": 14423,
+    "titulo": "Tarea[14423]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "21/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "1/12/2025",
+    "papelera": false
+  }
+]

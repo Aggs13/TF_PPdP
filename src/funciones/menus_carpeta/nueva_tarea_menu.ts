@@ -48,5 +48,7 @@ function validaciones(){
     return {dificultad, estado, vencimiento}
 }
 
+
+
 const txt:string = path.join(__dirname)
 const prompt = promptSync();
