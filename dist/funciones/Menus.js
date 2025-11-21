@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.menu_principal = menu_principal;
-// solo menu principal
+exports.limpiarPantalla = limpiarPantalla;
+exports.obtener_path = obtener_path;
+exports.path_txt = path_txt;
+// solo funciones para los menus
 // @ts-ignore
 const promptSync = require("prompt-sync");
 const fs = require("fs");
@@ -10,8 +13,9 @@ const inquirer = require("inquirer");
 const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
-const funciones_sistema_1 = require("./funciones_sistema");
-const papelera_menu_1 = require("./menus_carpeta/papelera_menu");
+const Reportes_1 = require("./Reportes");
+const buscar_tarea_menu_1 = require("./menus_carpeta/buscar_tarea_menu");
+exports.txt_path = obtener_path();
 const prompt = promptSync();
 (0, funciones_sistema_1.cargarTareas)();
 async function menu_principal() {
@@ -39,8 +43,8 @@ async function menu_principal() {
                 prompt("voler [ENTER] > ");
                 break;
             case "4":
-                (0, funciones_sistema_1.limpiarPantalla)();
-                console.log("BUSCAR");
+                limpiarPantalla();
+                await (0, buscar_tarea_menu_1.buscarTarea)();
                 prompt("voler [ENTER] > ");
                 break;
             case "5":

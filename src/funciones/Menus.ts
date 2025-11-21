@@ -7,8 +7,13 @@ import * as inquirer from "inquirer";
 import path = require("path");
 import {almacenTareas  } from "../clases/AlmacenTareas";
 import { menuNuevaTarea } from "./menus_carpeta/nueva_tarea_menu";
-import { cargarTareas, limpiarPantalla } from "./funciones_sistema";
+import { cargarTareas, limpiarPantalla, obtener_path } from "./funciones_sistema";
 import { menuMoverAPalera, menuPapelera } from "./menus_carpeta/papelera_menu";
+import { moverPapelera, quitarPapelera } from "./Reportes";
+import { buscarTarea } from "./menus_carpeta/buscar_tarea_menu";
+
+
+export const txt_path = obtener_path()
 const prompt = promptSync();
 
 
@@ -18,7 +23,7 @@ export async function menu_principal(){
     
     do {
         limpiarPantalla();
-        op = await menu();
+         op = await menu();
         
         switch (op){
 
@@ -45,7 +50,7 @@ export async function menu_principal(){
 
             case "4":
                 limpiarPantalla();
-                console.log("BUSCAR")
+                await buscarTarea();
                 prompt("voler [ENTER] > ");
             break;
 
@@ -91,4 +96,3 @@ async function menu() {
   ]);
   return opcion;
 }
-

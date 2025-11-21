@@ -33,6 +33,9 @@ export function establecerVencimiento(dias:string,fecha:Date){
 }
 
 
+export function agregarTareaArray(newTarea:Tarea,lista:Tarea[]){
+    return [...lista, newTarea];
+}
 // Mover a la papelera
 export function moverPapelera(id:string,tareas:Tarea[]){
     return tareas.map(t => {
@@ -55,3 +58,21 @@ export function vaciarPapelera(tareas:Tarea[]){
 }
 
 // condicion ? valor_si_true : valor_si_false
+
+//Buscar Tarea
+    //Buscar por Titulo
+    export function buscarTareaTitulo(titulo: String){
+        return almacenTareas.getTareas.filter(t => t.titulo.toLowerCase().includes(titulo.toLowerCase()))
+    }
+    //Buscar por ID
+    export function buscarID(id:number){
+        return almacenTareas.getTareas.filter(t=> t.id===id)
+    }
+    //Buscar por Estado
+    export function buscarEstado(estado: string){
+        return almacenTareas.getTareas.filter(t => t.estado === estado)
+    }
+    //Buscar por Dificultad
+    export function buscarDificultad(dificultad:string){
+        return almacenTareas.getTareas.filter(t=> t.dificultad=== dificultad)
+    }
