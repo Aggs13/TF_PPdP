@@ -2,23 +2,21 @@
 import path = require("path");
 // @ts-ignore
 import * as inquirer from "inquirer";
-import { limpiarPantalla } from "../Menus";
+
 import { buscarTareaTitulo, buscarDificultad, buscarEstado, buscarID } from "../Reportes";
 const listaDificultades: string[] = ["Facil", "Medio", "Dificil"];
 const listaEstados: string[] = ["Pendiente", "En Curso", "Terminada", "Cancelada"];
 
 // @ts-ignore
 import * as promptSync from "prompt-sync";
-import * as fs from "fs";
+import { limpiarPantalla } from "../funciones_sistema";
  const prompt = promptSync();
- 
  
  
  export async function buscarTarea(){
         
         let opcionBusqueda: string; 
         do{
-            limpiarPantalla();
             opcionBusqueda= await menuBuscarTarea();
             switch(opcionBusqueda.trim()){
                 case "1":
