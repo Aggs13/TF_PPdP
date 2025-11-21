@@ -53,13 +53,13 @@ export async function menu_principal(){
 
             case "5":
                 limpiarPantalla();
-                menuQuitarPapelera()
+                menuMoverQuitarPapelera(false)
                 prompt("voler [ENTER] > ");
             break;
 
             case "6":
                 limpiarPantalla();
-                menuMoverPapelera();
+                menuMoverQuitarPapelera(true);
                 prompt("voler [ENTER] > ");
             break;
 
@@ -93,29 +93,30 @@ async function menu() {
 }
 
 
-function menuMoverPapelera(){
-    console.table(almacenTareas.getTareas.filter(t => t.papelera == false),["id", "titulo", "estado", "vencimiento"]);
-    const idTarea:string = prompt("Ingrese el ID > ");
+function menuMoverQuitarPapelera(accion:boolean){
 
-    const tareasActuales = almacenTareas.getTareas;
-    const nuevoArray = moverPapelera(idTarea,tareasActuales);
+    if(accion){
+        
+        console.table(almacenTareas.getTareas.filter(t => t.papelera == false),["id", "titulo", "estado", "vencimiento"]);
+        const idTarea:string = prompt("Ingrese el ID > ");
+        const tareasActuales = almacenTareas.getTareas;
+        const nuevoArray = moverPapelera(idTarea,tareasActuales);
+        almacenTareas.setTareas = nuevoArray;
+        fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2));
 
-    almacenTareas.setTareas = nuevoArray;
-    fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2));
+    }else{
+
+        console.table(almacenTareas.getTareas.filter(t => t.papelera == true),["id", "titulo", "estado", "vencimiento"]);
+        const idTarea:string = prompt("Ingrese el ID >");
+        const tareasActuales = almacenTareas.getTareas;
+        const nuevoArray = quitarPapelera(idTarea,tareasActuales);
+        almacenTareas.setTareas = nuevoArray;
+        fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2));
+
+    }
 }
 
 
-function menuQuitarPapelera(){
-    console.table(almacenTareas.getTareas.filter(t => t.papelera == true),["id", "titulo", "estado", "vencimiento"]);
-    const idTarea:string = prompt("Ingrese el ID >");
-
-    const tareasActuales = almacenTareas.getTareas;
-    const nuevoArray = quitarPapelera(idTarea,tareasActuales);
-
-    almacenTareas.setTareas = nuevoArray;
-    fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas,null, 2));
-
-}
 
 // funciones generales
 function limpiarPantalla() {
