@@ -7,3 +7,6 @@ export class AlmacenTareas {
         this.list_tareas = [];
     }
 }
+
+const almacenTareas = new AlmacenTareas;
+export let array_tareas = almacenTareas.list_tareas;

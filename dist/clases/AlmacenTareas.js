@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AlmacenTareas = void 0;
+exports.array_tareas = exports.AlmacenTareas = void 0;
 class AlmacenTareas {
     list_tareas;
     constructor() {
@@ -8,3 +8,5 @@ class AlmacenTareas {
     }
 }
 exports.AlmacenTareas = AlmacenTareas;
+const almacenTareas = new AlmacenTareas;
+exports.array_tareas = almacenTareas.list_tareas;
