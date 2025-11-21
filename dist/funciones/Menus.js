@@ -6,10 +6,10 @@ exports.obtener_path = obtener_path;
 exports.path_txt = path_txt;
 // solo funciones para los menus
 // @ts-ignore
-const inquirer = require("inquirer");
-// @ts-ignore
 const promptSync = require("prompt-sync");
 const fs = require("fs");
+// @ts-ignore
+const inquirer = require("inquirer");
 const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
@@ -29,7 +29,7 @@ async function menu_principal() {
             case "1":
                 limpiarPantalla();
                 const tareas = AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false);
-                console.table(tareas, ["id", "titulo", "estado", "vencimiento", "papelera"]);
+                console.table(tareas, ["id", "titulo", "estado", "vencimiento"]);
                 prompt("voler [ENTER] > ");
                 break;
             case "2":
@@ -82,7 +82,7 @@ async function menu() {
 }
 function menuMoverPapelera() {
     console.table(AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false), ["id", "titulo", "estado", "vencimiento"]);
-    const idTarea = prompt("Ingrese el ID >");
+    const idTarea = prompt("Ingrese el ID > ");
     const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
     const nuevoArray = (0, Reportes_1.moverPapelera)(idTarea, tareasActuales);
     AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;

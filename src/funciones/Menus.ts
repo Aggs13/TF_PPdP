@@ -3,7 +3,7 @@
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
 // @ts-ignore
-import inquirer from "inquirer";
+import * as inquirer from "inquirer";
 import path = require("path");
 import {almacenTareas  } from "../clases/AlmacenTareas";
 import { Tarea } from "../clases/Tarea";
