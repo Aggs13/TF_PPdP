@@ -20,24 +20,24 @@ async function buscarTarea() {
                 const titulo = prompt("Ingrese el título o parte del titulo de la tarea a buscar: ");
                 if (!titulo)
                     return "0";
-                console.log((0, Reportes_1.buscarTareaTitulo)(titulo));
+                console.table((0, Reportes_1.buscarTareaTitulo)(titulo));
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 const id = prompt("Ingrese el ID de la tarea a buscar: ");
                 if (!id)
                     return "0";
-                console.log((0, Reportes_1.buscarID)(parseInt(id)));
+                console.table((0, Reportes_1.buscarID)(parseInt(id)));
                 break;
             case "3":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 let opEstado = await menuEstado();
-                console.log(controladorBuscarEstado(opEstado));
+                console.table((0, Reportes_1.buscarEstado)(opEstado));
                 break;
             case "4":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 let opDificultad = await menuDificultad();
-                console.log(controladorMenuDificultad(opDificultad));
+                console.table((0, Reportes_1.buscarDificultad)(opDificultad));
                 break;
             case "0":
                 (0, funciones_sistema_1.limpiarPantalla)();
@@ -83,9 +83,6 @@ async function menuEstado() {
     ]);
     return opcion;
 }
-function controladorBuscarEstado(opEstado) {
-    return (0, Reportes_1.buscarEstado)(opEstado);
-}
 //Menu Didicultad
 async function menuDificultad() {
     const { opcion } = await inquirer.prompt([
@@ -100,7 +97,4 @@ async function menuDificultad() {
         }
     ]);
     return opcion;
-}
-function controladorMenuDificultad(opDificultad) {
-    return (0, Reportes_1.buscarDificultad)(opDificultad);
 }

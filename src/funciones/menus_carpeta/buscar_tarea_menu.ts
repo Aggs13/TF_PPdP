@@ -23,23 +23,23 @@ import { limpiarPantalla } from "../funciones_sistema";
                     limpiarPantalla();
                     const titulo= prompt("Ingrese el título o parte del titulo de la tarea a buscar: ")
                     if(!titulo)return "0";
-                    console.log(buscarTareaTitulo(titulo));
+                    console.table(buscarTareaTitulo(titulo));
                     break;
                 case "2":
                     limpiarPantalla();
                     const id  = prompt("Ingrese el ID de la tarea a buscar: ")
                     if(!id) return "0";
-                    console.log(buscarID(parseInt(id)));
+                    console.table(buscarID(parseInt(id)));
                     break;
                 case "3":
                     limpiarPantalla();
                     let opEstado:string=await menuEstado();
-                    console.log(controladorBuscarEstado(opEstado));
+                    console.table(buscarEstado(opEstado));
                     break;
                 case "4":
                     limpiarPantalla();
                     let opDificultad:string= await menuDificultad();
-                    console.log(controladorMenuDificultad(opDificultad));
+                    console.table(buscarDificultad(opDificultad));
                     break;
                 case "0":
                     limpiarPantalla();
@@ -86,10 +86,7 @@ import { limpiarPantalla } from "../funciones_sistema";
         return opcion;
     }
 
-    function controladorBuscarEstado(opEstado:string){
-        return buscarEstado(opEstado);
 
-    }
 //Menu Didicultad
     async function menuDificultad(){
         const{opcion}= await inquirer.prompt([
@@ -104,7 +101,4 @@ import { limpiarPantalla } from "../funciones_sistema";
 
         }]);
         return opcion
-    }
-    function controladorMenuDificultad(opDificultad:string){
-        return buscarDificultad(opDificultad);
     }
