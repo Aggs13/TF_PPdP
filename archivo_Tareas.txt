@@ -19,7 +19,7 @@
     "creacion": "20/11/2025",
     "ultima_Edicion": "",
     "vencimiento": "30/11/2023",
-    "papelera": false
+    "papelera": true
   },
   {
     "id": 57495,
@@ -41,6 +41,6 @@
     "creacion": "21/11/2025",
     "ultima_Edicion": "",
     "vencimiento": "26/11/2025",
-    "papelera": false
+    "papelera": true
   }
 ]

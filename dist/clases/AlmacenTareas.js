@@ -12,6 +12,9 @@ class AlmacenTareas {
     agregar(t) {
         this.list_tareas.push(t);
     }
+    set setTareas(t) {
+        this.list_tareas = t;
+    }
 }
 exports.AlmacenTareas = AlmacenTareas;
 exports.almacenTareas = new AlmacenTareas;

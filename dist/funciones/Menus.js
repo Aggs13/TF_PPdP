@@ -13,6 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
+const Reportes_1 = require("./Reportes");
 exports.txt_path = obtener_path();
 const prompt = promptSync();
 const cargadas = JSON.parse(fs.readFileSync(exports.txt_path, "utf-8"));
@@ -27,7 +28,8 @@ async function menu_principal() {
         switch (op) {
             case "1":
                 limpiarPantalla();
-                console.table(AlmacenTareas_1.almacenTareas.getTareas, ["id", "titulo", "estado", "vencimiento"]);
+                const tareas = AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false);
+                console.table(tareas, ["id", "titulo", "estado", "vencimiento", "papelera"]);
                 prompt("voler [ENTER] > ");
                 break;
             case "2":
@@ -45,6 +47,12 @@ async function menu_principal() {
                 break;
             case "5":
                 limpiarPantalla();
+                menuQuitarPapelera();
+                prompt("voler [ENTER] > ");
+                break;
+            case "6":
+                limpiarPantalla();
+                menuMoverPapelera();
                 prompt("voler [ENTER] > ");
                 break;
             case "0":
@@ -64,12 +72,29 @@ async function menu() {
                 { name: "Nueva tarea ", value: "2" },
                 { name: "Editar      ", value: "3" },
                 { name: "Buscar      ", value: "4" },
-                { name: "Eliminar    ", value: "5" },
+                { name: "Papelera    ", value: "5" },
+                { name: "Eliminar    ", value: "6" },
                 { name: "Salir       ", value: "0" }
             ]
         }
     ]);
     return opcion;
+}
+function menuMoverPapelera() {
+    console.table(AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false), ["id", "titulo", "estado", "vencimiento"]);
+    const idTarea = prompt("Ingrese el ID >");
+    const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
+    const nuevoArray = (0, Reportes_1.moverPapelera)(idTarea, tareasActuales);
+    AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;
+    fs.writeFileSync(exports.txt_path, JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
+}
+function menuQuitarPapelera() {
+    console.table(AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == true), ["id", "titulo", "estado", "vencimiento"]);
+    const idTarea = prompt("Ingrese el ID >");
+    const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
+    const nuevoArray = (0, Reportes_1.quitarPapelera)(idTarea, tareasActuales);
+    AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;
+    fs.writeFileSync(exports.txt_path, JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
 }
 // funciones generales
 function limpiarPantalla() {

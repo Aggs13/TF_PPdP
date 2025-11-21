@@ -15,6 +15,10 @@ export class AlmacenTareas {
         this.list_tareas.push(t);
     }
 
+    public set setTareas(t: Tarea[]){
+        this.list_tareas = t
+    }
+
 }
 
 export const almacenTareas = new AlmacenTareas;
