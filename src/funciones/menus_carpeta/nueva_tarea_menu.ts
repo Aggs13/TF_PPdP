@@ -1,7 +1,7 @@
 import { validarDificultad,validarEstado,establecerVencimiento,nuevaTarea } from "../Reportes";
 import { Tarea } from "../../clases/Tarea";
 import { almacenTareas } from "../../clases/AlmacenTareas";
-
+import { txt_path } from "../Menus";
 import path = require("path");
 import { path_txt } from "../Menus";
 
@@ -28,7 +28,6 @@ export function menuNuevaTarea(id:number,edit:boolean){
 }
 
 
-
 function validaciones(){
 
      // Validar dificultad
@@ -50,5 +49,4 @@ function validaciones(){
 }
 
 const txt:string = path.join(__dirname)
-const txt_path = path_txt(txt)
 const prompt = promptSync();

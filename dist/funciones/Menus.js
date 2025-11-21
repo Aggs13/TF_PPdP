@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.txt_path = void 0;
 exports.menu_principal = menu_principal;
+exports.obtener_path = obtener_path;
 exports.path_txt = path_txt;
+// solo funciones para los menus
 // @ts-ignore
 const inquirer = require("inquirer");
 // @ts-ignore
@@ -10,9 +13,9 @@ const fs = require("fs");
 const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
+exports.txt_path = obtener_path();
 const prompt = promptSync();
-const txt_path = obtener_path();
-const cargadas = JSON.parse(fs.readFileSync(txt_path, "utf-8"));
+const cargadas = JSON.parse(fs.readFileSync(exports.txt_path, "utf-8"));
 for (const t of cargadas) {
     AlmacenTareas_1.almacenTareas.agregar(t);
 }
@@ -50,19 +53,6 @@ async function menu_principal() {
         }
     } while (op != "0");
 }
-function limpiarPantalla() {
-    process.stdout.write('\x1Bc');
-}
-// funciones generales
-function obtener_path() {
-    const txt = path.join(__dirname);
-    const txt_path = path_txt(txt);
-    return txt_path;
-}
-function path_txt(txt_path) {
-    const texto = path.join(txt_path, "../../archivo_Tareas.txt");
-    return texto;
-}
 async function menu() {
     const { opcion } = await inquirer.prompt([
         {
@@ -80,4 +70,17 @@ async function menu() {
         }
     ]);
     return opcion;
+}
+// funciones generales
+function limpiarPantalla() {
+    process.stdout.write('\x1Bc');
+}
+function obtener_path() {
+    const txt = path.join(__dirname);
+    const txt_path = path_txt(txt);
+    return txt_path;
+}
+function path_txt(txt_path) {
+    const texto = path.join(txt_path, "../../archivo_Tareas.txt");
+    return texto;
 }

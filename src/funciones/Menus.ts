@@ -1,5 +1,4 @@
 // solo funciones para los menus
-import { nuevaTarea,validarDificultad,validarEstado,establecerVencimiento,agregarTareaArray } from "./Reportes";
 // @ts-ignore
 const inquirer = require("inquirer");
 // @ts-ignore
@@ -10,15 +9,15 @@ import {almacenTareas  } from "../clases/AlmacenTareas";
 import { Tarea } from "../clases/Tarea";
 import { menuNuevaTarea } from "./menus_carpeta/nueva_tarea_menu";
 
+export const txt_path = obtener_path()
 const prompt = promptSync();
-
-const txt_path = obtener_path()
 const cargadas = JSON.parse(fs.readFileSync(txt_path,"utf-8"));
 
 for (const t of cargadas) {
     almacenTareas.agregar(t)
 
 }
+
 
 export async function menu_principal(){
     let op:string|null;    
@@ -66,8 +65,6 @@ export async function menu_principal(){
 }
 
 
-
-
 async function menu() {
   const {opcion} = await inquirer.prompt([
     {
@@ -84,11 +81,8 @@ async function menu() {
       ]
     }
   ]);
-
   return opcion
 }
-
-
 
 // funciones generales
 
@@ -106,3 +100,4 @@ export function path_txt(txt_path:string){
     const texto = path.join(txt_path,"../../archivo_Tareas.txt")
     return texto 
 }
+
