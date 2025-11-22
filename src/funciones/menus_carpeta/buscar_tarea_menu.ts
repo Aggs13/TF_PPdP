@@ -4,7 +4,7 @@ import path = require("path");
 import * as inquirer from "inquirer";
 import { buscarTareaTitulo, buscarDificultad, buscarEstado, buscarID } from "../Reportes";
 const listaDificultades: string[] = ["Facil", "Medio", "Dificil"];
-const listaEstados: string[] = ["Pendiente", "En Curso", "Terminada", "Cancelada"];
+const listaEstados: string[] = ["Pendiente", "En Proceso", "Terminada", "Cancelada"];
 
 // @ts-ignore
 import * as promptSync from "prompt-sync";
@@ -28,7 +28,7 @@ import { limpiarPantalla } from "../funciones_sistema";
                     limpiarPantalla();
                     const id  = prompt("Ingrese el ID de la tarea a buscar: ")
                     if(!id) return "0";
-                    buscarID(id).length>0?console.table(buscarID(id)):console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
+                    buscarID(id).length>=0?console.table(buscarID(id)):console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
                     break;
                 case "3":
                     limpiarPantalla();

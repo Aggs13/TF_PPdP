@@ -69,7 +69,7 @@ function buscarTareaTitulo(titulo) {
 }
 //Buscar por ID
 function buscarID(id) {
-    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.id === id);
+    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.id == id);
 }
 //Buscar por Estado
 function buscarEstado(estado) {

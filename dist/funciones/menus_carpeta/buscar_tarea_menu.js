@@ -5,7 +5,7 @@ exports.buscarTarea = buscarTarea;
 const inquirer = require("inquirer");
 const Reportes_1 = require("../Reportes");
 const listaDificultades = ["Facil", "Medio", "Dificil"];
-const listaEstados = ["Pendiente", "En Curso", "Terminada", "Cancelada"];
+const listaEstados = ["Pendiente", "En Proceso", "Terminada", "Cancelada"];
 // @ts-ignore
 const promptSync = require("prompt-sync");
 const funciones_sistema_1 = require("../funciones_sistema");
@@ -17,17 +17,17 @@ async function buscarTarea() {
         switch (opcionBusqueda.trim()) {
             case "1":
                 (0, funciones_sistema_1.limpiarPantalla)();
-                const titulo = prompt("🔎🔎 Ingrese el título o parte del titulo de la tarea a buscar: ");
+                const titulo = prompt("Ingrese el título o parte del titulo de la tarea a buscar: ");
                 if (!titulo)
                     return "0";
                 (0, Reportes_1.buscarTareaTitulo)(titulo).length > 0 ? console.table((0, Reportes_1.buscarTareaTitulo)(titulo)) : console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();
-                const id = prompt("🔎🔎 Ingrese el ID de la tarea a buscar: ");
+                const id = prompt("Ingrese el ID de la tarea a buscar: ");
                 if (!id)
                     return "0";
-                (0, Reportes_1.buscarID)(id).length > 0 ? console.table((0, Reportes_1.buscarID)(id)) : console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
+                (0, Reportes_1.buscarID)(id).length >= 0 ? console.table((0, Reportes_1.buscarID)(id)) : console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
                 break;
             case "3":
                 (0, funciones_sistema_1.limpiarPantalla)();
@@ -40,8 +40,6 @@ async function buscarTarea() {
                 (0, Reportes_1.buscarDificultad)(opDificultad).length > 0 ? console.table((0, Reportes_1.buscarDificultad)(opDificultad)) : console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
                 break;
             case "0":
-                (0, funciones_sistema_1.limpiarPantalla)();
-                console.log("Volviendo al menu principal ⏪⏪");
                 return;
             default:
                 (0, funciones_sistema_1.limpiarPantalla)();

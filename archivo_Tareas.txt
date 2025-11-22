@@ -42,5 +42,27 @@
     "ultima_Edicion": "",
     "vencimiento": "1/12/2025",
     "papelera": false
+  },
+  {
+    "id": 57329,
+    "titulo": "Tarea[57329]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "21/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "1/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 14116,
+    "titulo": "Tarea[14116]",
+    "descripcion": "",
+    "estado": "En Proceso",
+    "dificultad": "Dificil",
+    "creacion": "21/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "10/1/2026",
+    "papelera": false
   }
 ]

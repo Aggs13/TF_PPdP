@@ -75,7 +75,7 @@ export function vaciarPapelera(tareas:Tarea[]){
     }
     //Buscar por ID
     export function buscarID(id:number){
-        return almacenTareas.getTareas.filter(t=> t.id===id)
+        return almacenTareas.getTareas.filter(t=> t.id == id)
     }
     //Buscar por Estado
     export function buscarEstado(estado: string){
