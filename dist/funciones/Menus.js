@@ -52,7 +52,6 @@ async function menu_principal() {
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("ELIMINAR");
                 (0, papelera_menu_1.menuMoverAPalera)();
-                prompt("voler [ENTER] > ");
                 break;
             case "0":
                 (0, funciones_sistema_1.limpiarPantalla)();

@@ -2,7 +2,6 @@
 import path = require("path");
 // @ts-ignore
 import * as inquirer from "inquirer";
-
 import { buscarTareaTitulo, buscarDificultad, buscarEstado, buscarID } from "../Reportes";
 const listaDificultades: string[] = ["Facil", "Medio", "Dificil"];
 const listaEstados: string[] = ["Pendiente", "En Curso", "Terminada", "Cancelada"];

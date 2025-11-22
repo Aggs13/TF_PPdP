@@ -63,7 +63,6 @@ export async function menu_principal(){
                 limpiarPantalla();
                 console.log("ELIMINAR")
                 menuMoverAPalera()
-                prompt("voler [ENTER] > ");
             break;
 
             case "0":
