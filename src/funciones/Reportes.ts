@@ -62,7 +62,7 @@ export function vaciarPapelera(tareas:Tarea[]){
 //Buscar Tarea
     //Buscar por Titulo
     export function buscarTareaTitulo(titulo: String){
-        return almacenTareas.getTareas.filter(t => t.titulo.toLowerCase().includes(titulo.toLowerCase()))
+        return almacenTareas.getTareas.filter(t => t.papelera == false && t.titulo.toLowerCase().includes(titulo.toLowerCase()))
     }
     //Buscar por ID
     export function buscarID(id:number){

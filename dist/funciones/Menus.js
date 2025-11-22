@@ -42,13 +42,11 @@ async function menu_principal() {
             case "4":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 await (0, buscar_tarea_menu_1.buscarTarea)();
-                prompt("voler [ENTER] > ");
                 break;
             case "5":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("PAPELERA");
                 await (0, papelera_menu_1.menuPapelera)();
-                prompt("voler [ENTER] > ");
                 break;
             case "6":
                 (0, funciones_sistema_1.limpiarPantalla)();

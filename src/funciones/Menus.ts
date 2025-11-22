@@ -51,14 +51,12 @@ export async function menu_principal(){
             case "4":
                 limpiarPantalla();
                 await buscarTarea();
-                prompt("voler [ENTER] > ");
             break;
 
             case "5":
                 limpiarPantalla();
                 console.log("PAPELERA")
                 await menuPapelera()
-                prompt("voler [ENTER] > ");
             break;
 
             case "6":

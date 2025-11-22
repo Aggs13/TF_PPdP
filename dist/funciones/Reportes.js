@@ -58,7 +58,7 @@ function vaciarPapelera(tareas) {
 //Buscar Tarea
 //Buscar por Titulo
 function buscarTareaTitulo(titulo) {
-    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.titulo.toLowerCase().includes(titulo.toLowerCase()));
+    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false && t.titulo.toLowerCase().includes(titulo.toLowerCase()));
 }
 //Buscar por ID
 function buscarID(id) {

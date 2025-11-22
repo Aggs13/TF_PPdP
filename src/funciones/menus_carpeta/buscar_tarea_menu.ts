@@ -23,31 +23,29 @@ import { limpiarPantalla } from "../funciones_sistema";
                     limpiarPantalla();
                     const titulo= prompt("Ingrese el título o parte del titulo de la tarea a buscar: ")
                     if(!titulo)return "0";
-                    console.table(buscarTareaTitulo(titulo));
+                    buscarTareaTitulo(titulo).length>0?console.table(buscarTareaTitulo(titulo)):console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
                     break;
                 case "2":
                     limpiarPantalla();
                     const id  = prompt("Ingrese el ID de la tarea a buscar: ")
                     if(!id) return "0";
-                    console.table(buscarID(parseInt(id)));
+                    buscarID(id).length>0?console.table(buscarID(id)):console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
                     break;
                 case "3":
                     limpiarPantalla();
                     let opEstado:string=await menuEstado();
-                    console.table(buscarEstado(opEstado));
+                    buscarEstado(opEstado).length>0?console.table(buscarEstado(opEstado)):console.log("❌❌ No hay tareas con ese Estado aun ❌❌");
                     break;
                 case "4":
                     limpiarPantalla();
                     let opDificultad:string= await menuDificultad();
-                    console.table(buscarDificultad(opDificultad));
+                    buscarDificultad(opDificultad).length>0?console.table(buscarDificultad(opDificultad)):console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
                     break;
                 case "0":
-                    limpiarPantalla();
-                    console.log("Volviendo al menu principal")
                     return;
                 default:
                     limpiarPantalla();
-                    console.log("Opción inválida");
+                    console.log("❌❌ Opción inválida ❌❌");
                     return;
             }
         }while(opcionBusqueda != "0")

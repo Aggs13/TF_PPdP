@@ -17,35 +17,35 @@ async function buscarTarea() {
         switch (opcionBusqueda.trim()) {
             case "1":
                 (0, funciones_sistema_1.limpiarPantalla)();
-                const titulo = prompt("Ingrese el título o parte del titulo de la tarea a buscar: ");
+                const titulo = prompt("🔎🔎 Ingrese el título o parte del titulo de la tarea a buscar: ");
                 if (!titulo)
                     return "0";
-                console.table((0, Reportes_1.buscarTareaTitulo)(titulo));
+                (0, Reportes_1.buscarTareaTitulo)(titulo).length > 0 ? console.table((0, Reportes_1.buscarTareaTitulo)(titulo)) : console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();
-                const id = prompt("Ingrese el ID de la tarea a buscar: ");
+                const id = prompt("🔎🔎 Ingrese el ID de la tarea a buscar: ");
                 if (!id)
                     return "0";
-                console.table((0, Reportes_1.buscarID)(parseInt(id)));
+                (0, Reportes_1.buscarID)(id).length > 0 ? console.table((0, Reportes_1.buscarID)(id)) : console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
                 break;
             case "3":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 let opEstado = await menuEstado();
-                console.table((0, Reportes_1.buscarEstado)(opEstado));
+                (0, Reportes_1.buscarEstado)(opEstado).length > 0 ? console.table((0, Reportes_1.buscarEstado)(opEstado)) : console.log("❌❌ No hay tareas con ese Estado aun ❌❌");
                 break;
             case "4":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 let opDificultad = await menuDificultad();
-                console.table((0, Reportes_1.buscarDificultad)(opDificultad));
+                (0, Reportes_1.buscarDificultad)(opDificultad).length > 0 ? console.table((0, Reportes_1.buscarDificultad)(opDificultad)) : console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
                 break;
             case "0":
                 (0, funciones_sistema_1.limpiarPantalla)();
-                console.log("Volviendo al menu principal");
+                console.log("Volviendo al menu principal ⏪⏪");
                 return;
             default:
                 (0, funciones_sistema_1.limpiarPantalla)();
-                console.log("Opción inválida");
+                console.log("❌❌ Opción inválida ❌❌");
                 return;
         }
     } while (opcionBusqueda != "0");
