@@ -39,14 +39,22 @@ function agregarTareaArray(newTarea, lista) {
 }
 // Mover a la papelera
 function moverPapelera(id, tareas) {
+    const idNum = parseInt(id);
+    const tareaExiste = tareas.some(t => t.id == idNum);
+    if (!tareaExiste)
+        return null;
     return tareas.map(t => {
         return t.id == parseInt(id) ? { ...t, papelera: true } : t;
     });
 }
 // Quitar de papelera
 function quitarPapelera(id, tareas) {
+    const idNum = parseInt(id);
+    const tareaExiste = tareas.some(t => t.id == idNum);
+    if (!tareaExiste)
+        return null;
     return tareas.map(t => {
-        return t.id == parseInt(id) ? { ...t, papelera: false } : t;
+        return t.id == idNum ? { ...t, papelera: false } : t;
     });
 }
 // vaciar papelera 
@@ -54,7 +62,6 @@ function vaciarPapelera(tareas) {
     const nuevo_array = tareas.filter(t => t.papelera == false);
     return nuevo_array;
 }
-// condicion ? valor_si_true : valor_si_false
 //Buscar Tarea
 //Buscar por Titulo
 function buscarTareaTitulo(titulo) {

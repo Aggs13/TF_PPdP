@@ -23,6 +23,7 @@ export function menuNuevaTarea(id:number,edit:boolean){
 
     const tarea:Tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad,papelera);
     almacenTareas.agregar(tarea)
+    console.log("✅ Nueva tarea creada!!  ");
     fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas,null, 2))
 
 }

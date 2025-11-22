@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.buscarTarea = buscarTarea;
 // @ts-ignore
 const inquirer = require("inquirer");
-const Menus_1 = require("../Menus");
+const funciones_sistema_1 = require("../funciones_sistema");
 const Reportes_1 = require("../Reportes");
 const listaDificultades = ["Facil", "Medio", "Dificil"];
 const listaEstados = ["Pendiente", "En Curso", "Terminada", "Cancelada"];
@@ -13,45 +13,38 @@ const prompt = promptSync();
 async function buscarTarea() {
     let opcionBusqueda;
     do {
-        (0, Menus_1.limpiarPantalla)();
         opcionBusqueda = await menuBuscarTarea();
         switch (opcionBusqueda.trim()) {
             case "1":
-                (0, Menus_1.limpiarPantalla)();
+                (0, funciones_sistema_1.limpiarPantalla)();
                 const titulo = prompt("Ingrese el título o parte del titulo de la tarea a buscar: ");
                 if (!titulo)
                     return "0";
                 console.log((0, Reportes_1.buscarTareaTitulo)(titulo));
                 break;
             case "2":
-                (0, Menus_1.limpiarPantalla)();
+                (0, funciones_sistema_1.limpiarPantalla)();
                 const id = prompt("Ingrese el ID de la tarea a buscar: ");
                 if (!id)
                     return "0";
                 console.log((0, Reportes_1.buscarID)(parseInt(id)));
                 break;
             case "3":
-                (0, Menus_1.limpiarPantalla)();
-                listaEstados.forEach((estado, i) => {
-                    console.log(`[${i + 1}]  ${estado}`);
-                });
+                (0, funciones_sistema_1.limpiarPantalla)();
                 let opEstado = await menuEstado();
                 console.log(controladorBuscarEstado(opEstado));
                 break;
             case "4":
-                (0, Menus_1.limpiarPantalla)();
-                listaDificultades.forEach((dificultad, i) => {
-                    console.log(`[${i + 1}] ${dificultad}`);
-                });
+                (0, funciones_sistema_1.limpiarPantalla)();
                 let opDificultad = await menuDificultad();
                 console.log(controladorMenuDificultad(opDificultad));
                 break;
             case "0":
-                (0, Menus_1.limpiarPantalla)();
+                (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("Volviendo al menu principal");
                 return;
             default:
-                (0, Menus_1.limpiarPantalla)();
+                (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("Opción inválida");
                 return;
         }

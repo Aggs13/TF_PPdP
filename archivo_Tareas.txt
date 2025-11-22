@@ -8,7 +8,7 @@
     "creacion": "21/11/2025",
     "ultima_Edicion": "",
     "vencimiento": "1/12/2025",
-    "papelera": true
+    "papelera": false
   },
   {
     "id": 7797,
@@ -19,7 +19,7 @@
     "creacion": "21/11/2025",
     "ultima_Edicion": "",
     "vencimiento": "1/12/2025",
-    "papelera": false
+    "papelera": true
   },
   {
     "id": 14186,
@@ -33,8 +33,6 @@
     "papelera": false
   },
   {
-    "id": 55263,
-    "titulo": "Tarea[55263]",
     "id": 14423,
     "titulo": "Tarea[14423]",
     "descripcion": "",

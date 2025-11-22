@@ -58,14 +58,12 @@ export async function menu_principal(){
                 limpiarPantalla();
                 console.log("PAPELERA")
                 await menuPapelera()
-                prompt("voler [ENTER] > ");
             break;
 
             case "6":
                 limpiarPantalla();
                 console.log("ELIMINAR")
                 menuMoverAPalera()
-                prompt("voler [ENTER] > ");
             break;
 
             case "0":

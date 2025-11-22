@@ -1,21 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.txt_path = void 0;
 exports.menu_principal = menu_principal;
-exports.limpiarPantalla = limpiarPantalla;
-exports.obtener_path = obtener_path;
-exports.path_txt = path_txt;
-// solo funciones para los menus
+// solo menu principal
 // @ts-ignore
 const promptSync = require("prompt-sync");
-const fs = require("fs");
 // @ts-ignore
 const inquirer = require("inquirer");
-const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
-const Reportes_1 = require("./Reportes");
+const funciones_sistema_1 = require("./funciones_sistema");
+const papelera_menu_1 = require("./menus_carpeta/papelera_menu");
 const buscar_tarea_menu_1 = require("./menus_carpeta/buscar_tarea_menu");
-exports.txt_path = obtener_path();
+exports.txt_path = (0, funciones_sistema_1.obtener_path)();
 const prompt = promptSync();
 (0, funciones_sistema_1.cargarTareas)();
 async function menu_principal() {
@@ -43,7 +40,7 @@ async function menu_principal() {
                 prompt("voler [ENTER] > ");
                 break;
             case "4":
-                limpiarPantalla();
+                (0, funciones_sistema_1.limpiarPantalla)();
                 await (0, buscar_tarea_menu_1.buscarTarea)();
                 prompt("voler [ENTER] > ");
                 break;
@@ -51,13 +48,11 @@ async function menu_principal() {
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("PAPELERA");
                 await (0, papelera_menu_1.menuPapelera)();
-                prompt("voler [ENTER] > ");
                 break;
             case "6":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("ELIMINAR");
                 (0, papelera_menu_1.menuMoverAPalera)();
-                prompt("voler [ENTER] > ");
                 break;
             case "0":
                 (0, funciones_sistema_1.limpiarPantalla)();

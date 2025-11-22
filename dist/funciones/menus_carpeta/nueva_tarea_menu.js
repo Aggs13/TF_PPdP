@@ -18,6 +18,7 @@ function menuNuevaTarea(id, edit) {
     const papelera = false;
     const tarea = (0, Reportes_1.nuevaTarea)(newId, titulo, desc, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera);
     AlmacenTareas_1.almacenTareas.agregar(tarea);
+    console.log("✅ Nueva tarea creada!!  ");
     fs.writeFileSync((0, funciones_sistema_1.obtener_path)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
 }
 function validaciones() {

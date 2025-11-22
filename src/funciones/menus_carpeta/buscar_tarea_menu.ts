@@ -2,7 +2,7 @@
 import path = require("path");
 // @ts-ignore
 import * as inquirer from "inquirer";
-import { limpiarPantalla } from "../Menus";
+import { limpiarPantalla } from "../funciones_sistema";
 import { buscarTareaTitulo, buscarDificultad, buscarEstado, buscarID } from "../Reportes";
 const listaDificultades: string[] = ["Facil", "Medio", "Dificil"];
 const listaEstados: string[] = ["Pendiente", "En Curso", "Terminada", "Cancelada"];
@@ -10,6 +10,7 @@ const listaEstados: string[] = ["Pendiente", "En Curso", "Terminada", "Cancelada
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
+
  const prompt = promptSync();
  
  
@@ -18,7 +19,7 @@ import * as fs from "fs";
         
         let opcionBusqueda: string; 
         do{
-            limpiarPantalla();
+            
             opcionBusqueda= await menuBuscarTarea();
             switch(opcionBusqueda.trim()){
                 case "1":
