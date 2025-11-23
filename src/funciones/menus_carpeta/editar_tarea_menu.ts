@@ -65,7 +65,7 @@ export function menuEditarTarea() {
   const dias = prompt("¿En cuántos días vence ahora? (vacío = mantener): ");
   const vencimiento = dias.trim() === "" ? tareaAEditar.vencimiento : establecerVencimiento(dias, new Date());
 
-  // Actualizamos
+  // Actualizacion Tarea
   tareaAEditar.titulo = titulo.trim();
   tareaAEditar.descripcion = desc.trim();
   tareaAEditar.dificultad = dificultad;
@@ -73,7 +73,7 @@ export function menuEditarTarea() {
   tareaAEditar.vencimiento = vencimiento;
   tareaAEditar.ultima_Edicion = new Date().toLocaleDateString("es-AR");
 
-  // Guardamos con la ruta correcta
+
   fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas, null, 2));
 
   console.log("\nTarea editada exitosamente!");
