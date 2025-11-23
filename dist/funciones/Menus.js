@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.txt_path = void 0;
 exports.menu_principal = menu_principal;
 // solo menu principal
 // @ts-ignore
@@ -13,7 +12,6 @@ const funciones_sistema_1 = require("./funciones_sistema");
 const editar_tarea_menu_js_1 = require("./menus_carpeta/editar_tarea_menu.js");
 const papelera_menu_1 = require("./menus_carpeta/papelera_menu");
 const buscar_tarea_menu_1 = require("./menus_carpeta/buscar_tarea_menu");
-exports.txt_path = (0, funciones_sistema_1.obtener_path)();
 const prompt = promptSync();
 (0, funciones_sistema_1.cargarTareas)();
 async function menu_principal() {
@@ -42,6 +40,7 @@ async function menu_principal() {
                 break;
             case "4":
                 (0, funciones_sistema_1.limpiarPantalla)();
+                console.log("BUSCAR TAREA");
                 await (0, buscar_tarea_menu_1.buscarTarea)();
                 break;
             case "5":

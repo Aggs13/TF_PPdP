@@ -64,5 +64,16 @@
     "ultima_Edicion": "",
     "vencimiento": "10/1/2026",
     "papelera": false
+  },
+  {
+    "id": 18210,
+    "titulo": "Tarea[18210]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "22/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "2/12/2025",
+    "papelera": false
   }
 ]

@@ -4,10 +4,11 @@ exports.menuEditarTarea = menuEditarTarea;
 // src/funciones/menus_carpeta/editar_tarea_menu.ts
 const AlmacenTareas_js_1 = require("../../clases/AlmacenTareas.js");
 const Reportes_js_1 = require("../Reportes.js");
+// @ts-ignore
 const promptSync = require("prompt-sync");
 const fs = require("fs");
+const funciones_sistema_js_1 = require("../funciones_sistema.js");
 // Usamos la misma variable que ya existe en Menus.ts
-const Menus_js_1 = require("../Menus.js"); // ← ESTA ES LA LÍNEA CLAVE
 const prompt = promptSync();
 function menuEditarTarea() {
     console.clear();
@@ -63,7 +64,7 @@ function menuEditarTarea() {
     tareaAEditar.vencimiento = vencimiento;
     tareaAEditar.ultima_Edicion = new Date().toLocaleDateString("es-AR");
     // Guardamos con la ruta correcta
-    fs.writeFileSync(Menus_js_1.txt_path, JSON.stringify(AlmacenTareas_js_1.almacenTareas.getTareas, null, 2));
+    fs.writeFileSync((0, funciones_sistema_js_1.obtener_path)(), JSON.stringify(AlmacenTareas_js_1.almacenTareas.getTareas, null, 2));
     console.log("\nTarea editada exitosamente!");
     prompt("Presione Enter para continuar...");
 }

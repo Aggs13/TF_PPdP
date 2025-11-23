@@ -1,22 +1,16 @@
 // solo menu principal
 // @ts-ignore
 import * as promptSync from "prompt-sync";
-import * as fs from "fs";
 // @ts-ignore
 import * as inquirer from "inquirer";
 import path = require("path");
 import {almacenTareas  } from "../clases/AlmacenTareas";
 import { menuNuevaTarea } from "./menus_carpeta/nueva_tarea_menu";
-import { cargarTareas, limpiarPantalla, obtener_path } from "./funciones_sistema";
+import { cargarTareas, limpiarPantalla} from "./funciones_sistema";
 import { menuEditarTarea } from "./menus_carpeta/editar_tarea_menu.js";
 import { menuMoverAPalera, menuPapelera } from "./menus_carpeta/papelera_menu";
-import { moverPapelera, quitarPapelera } from "./Reportes";
 import { buscarTarea } from "./menus_carpeta/buscar_tarea_menu";
-
-
-export const txt_path = obtener_path()
 const prompt = promptSync();
-
 
 cargarTareas();
 export async function menu_principal(){
@@ -51,6 +45,7 @@ export async function menu_principal(){
 
             case "4":
                 limpiarPantalla();
+                console.log("BUSCAR TAREA");
                 await buscarTarea();
             break;
 
