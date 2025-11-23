@@ -2,11 +2,11 @@
 import { almacenTareas } from "../../clases/AlmacenTareas.js";
 import { Tarea } from "../../clases/Tarea.js";
 import { validarDificultad, validarEstado, establecerVencimiento } from "../Reportes.js";
+//@ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
 
-// Usamos la misma variable que ya existe en Menus.ts
-import { txt_path } from "../Menus.js";   // ← ESTA ES LA LÍNEA CLAVE
+import { txt_path } from "../Menus.js";  
 
 const prompt = promptSync();
 
@@ -66,7 +66,7 @@ export function menuEditarTarea() {
   const dias = prompt("¿En cuántos días vence ahora? (vacío = mantener): ");
   const vencimiento = dias.trim() === "" ? tareaAEditar.vencimiento : establecerVencimiento(dias, new Date());
 
-  // Actualizamos
+  // Actualizacion Tarea
   tareaAEditar.titulo = titulo.trim();
   tareaAEditar.descripcion = desc.trim();
   tareaAEditar.dificultad = dificultad;
@@ -74,7 +74,7 @@ export function menuEditarTarea() {
   tareaAEditar.vencimiento = vencimiento;
   tareaAEditar.ultima_Edicion = new Date().toLocaleDateString("es-AR");
 
-  // Guardamos con la ruta correcta
+ 
   fs.writeFileSync(txt_path, JSON.stringify(almacenTareas.getTareas, null, 2));
 
   console.log("\nTarea editada exitosamente!");
