@@ -10,6 +10,7 @@ const inquirer = require("inquirer");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
 const funciones_sistema_1 = require("./funciones_sistema");
+const editar_tarea_menu_js_1 = require("./menus_carpeta/editar_tarea_menu.js");
 const papelera_menu_1 = require("./menus_carpeta/papelera_menu");
 const buscar_tarea_menu_1 = require("./menus_carpeta/buscar_tarea_menu");
 exports.txt_path = (0, funciones_sistema_1.obtener_path)();
@@ -36,8 +37,8 @@ async function menu_principal() {
                 break;
             case "3":
                 (0, funciones_sistema_1.limpiarPantalla)();
-                console.log("EDITAR");
-                prompt("voler [ENTER] > ");
+                console.log("EDITAR TAREA");
+                (0, editar_tarea_menu_js_1.menuEditarTarea)();
                 break;
             case "4":
                 (0, funciones_sistema_1.limpiarPantalla)();

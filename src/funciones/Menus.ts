@@ -8,6 +8,7 @@ import path = require("path");
 import {almacenTareas  } from "../clases/AlmacenTareas";
 import { menuNuevaTarea } from "./menus_carpeta/nueva_tarea_menu";
 import { cargarTareas, limpiarPantalla, obtener_path } from "./funciones_sistema";
+import { menuEditarTarea } from "./menus_carpeta/editar_tarea_menu.js";
 import { menuMoverAPalera, menuPapelera } from "./menus_carpeta/papelera_menu";
 import { moverPapelera, quitarPapelera } from "./Reportes";
 import { buscarTarea } from "./menus_carpeta/buscar_tarea_menu";
@@ -44,8 +45,8 @@ export async function menu_principal(){
 
             case "3":
                 limpiarPantalla();
-                console.log("EDITAR")
-                prompt("voler [ENTER] > ");
+                console.log("EDITAR TAREA");
+                menuEditarTarea();
             break;
 
             case "4":
