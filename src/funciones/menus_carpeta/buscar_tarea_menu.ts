@@ -74,7 +74,7 @@ import { limpiarPantalla } from "../funciones_sistema";
                 type:"list",
                 name:"opcion",
                 message:"> Elige un Estado",
-                choices:listaEstados.map((estado,i)=>({
+                choices:listaEstados.map((estado)=>({
                     name: estado,
                     value: estado 
                 }))

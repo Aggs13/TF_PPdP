@@ -8,11 +8,10 @@ const Reportes_js_1 = require("../Reportes.js");
 const promptSync = require("prompt-sync");
 const fs = require("fs");
 const funciones_sistema_js_1 = require("../funciones_sistema.js");
-// Usamos la misma variable que ya existe en Menus.ts
 const prompt = promptSync();
 function menuEditarTarea() {
     console.clear();
-    console.log("EDITAR TAREA".padEnd(50, "="));
+    console.log("EDITAR TAREA");
     // Buscar tarea
     const criterio = prompt("Buscar por (1) ID o (2) Título? ");
     let tareaAEditar;
@@ -56,14 +55,13 @@ function menuEditarTarea() {
     console.log(`Vencimiento actual: ${tareaAEditar.vencimiento || "sin fecha"}`);
     const dias = prompt("¿En cuántos días vence ahora? (vacío = mantener): ");
     const vencimiento = dias.trim() === "" ? tareaAEditar.vencimiento : (0, Reportes_js_1.establecerVencimiento)(dias, new Date());
-    // Actualizamos
+    // Actualizacion Tarea
     tareaAEditar.titulo = titulo.trim();
     tareaAEditar.descripcion = desc.trim();
     tareaAEditar.dificultad = dificultad;
     tareaAEditar.estado = estado;
     tareaAEditar.vencimiento = vencimiento;
     tareaAEditar.ultima_Edicion = new Date().toLocaleDateString("es-AR");
-    // Guardamos con la ruta correcta
     fs.writeFileSync((0, funciones_sistema_js_1.obtener_path)(), JSON.stringify(AlmacenTareas_js_1.almacenTareas.getTareas, null, 2));
     console.log("\nTarea editada exitosamente!");
     prompt("Presione Enter para continuar...");

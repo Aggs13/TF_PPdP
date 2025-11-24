@@ -11,7 +11,7 @@ const prompt = promptSync();
 
 export function menuEditarTarea() {
   console.clear();
-  console.log("EDITAR TAREA".padEnd(50, "="));
+  console.log("EDITAR TAREA");
 
   // Buscar tarea
   const criterio = prompt("Buscar por (1) ID o (2) Título? ");
