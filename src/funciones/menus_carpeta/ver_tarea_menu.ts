@@ -2,20 +2,37 @@ import { almacenTareas } from "../../clases/AlmacenTareas";
 //@ts-ignore
 import * as inquirer from "inquirer";
 import { Tarea } from "../../clases/Tarea";
+import { buscarDificultad } from "../Reportes";
 
 
-export async function verTarea(){
+
+export async function menuVerTarea(){
     const tareas = almacenTareas.getTareas.filter(t => t.papelera == false);
     console.table(tareas,["id", "titulo", "estado", "vencimiento"]);
-    let opcion: string = await subMenu();
-    if (opcion=="1") {
-        const tareaDet = await tareasDetalladas(tareas)
-        console.table([tareaDet]);
+    let opcion: string
+    do{
+        opcion = await subMenu();
+        switch(opcion){
+            case "1":
+                const tareaDet = await tareasDetalladas(tareas)
+                console.table([tareaDet]);
+                break;
+            case "2":
+                const prioridad=tareasPrioridad(tareas);
+                if(!prioridad|| prioridad.length==0){
+                    console.log("Aun No Hay Tareas de Alta Prioridad")
+                    return;
+                }
+                console.table(prioridad);
+                break;
+            default:
+                console.log("Volviendo...");
+                break
     }
-    return;
-
+}while(opcion != "0")
 }
 
+//Sub Menu
 async function subMenu(){
               const {opcion} = await inquirer.prompt([
                 {
@@ -23,7 +40,8 @@ async function subMenu(){
                   name: "opcion",
                   message: "> Que Desea Hacer?",
                   choices: [
-                  { name: "Ver detalladamente una de las tareas  ", value: "1" },
+                  { name: "Ver Detalladamente una de las Tareas  ", value: "1" },
+                  { name: "Ver Tareas de Prioridad Alta  ", value: "2" },
                   { name: "Volver       ", value: "0"}
                   ]
                 }
@@ -31,7 +49,7 @@ async function subMenu(){
               
               return opcion;
 }
-
+//Tareas Detalladas
 async function tareasDetalladas(tareasFiltradas: Tarea[]) {
     const tarea=await menuDatalladas(tareasFiltradas)
     return tarea;
@@ -51,4 +69,24 @@ async function menuDatalladas(tareasFiltradas:Tarea[]) {
             ]);
             return opcion;
     
+}
+
+//Tareas Prioridad
+function tareasPrioridad(tareasFiltradas:Tarea[]){
+   const vencidas = verificarVencimiento(tareasFiltradas, new Date());
+
+  if (vencidas.length > 0) {
+    return vencidas;
+  }
+
+  const tareasDificiles = buscarDificultad("Dificil");
+
+  if (!tareasDificiles || tareasDificiles.length === 0) {
+    return null;
+  }
+
+  return tareasDificiles;
+}
+function verificarVencimiento(tareasFiltradas:Tarea[], fecha:Date){
+   return tareasFiltradas.filter(tarea=> new Date(tarea.vencimiento)>fecha)
 }

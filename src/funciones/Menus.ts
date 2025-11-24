@@ -10,7 +10,7 @@ import { cargarTareas, limpiarPantalla} from "./funciones_sistema";
 import { menuEditarTarea } from "./menus_carpeta/editar_tarea_menu.js";
 import { menuMoverAPalera, menuPapelera } from "./menus_carpeta/papelera_menu";
 import { buscarTarea } from "./menus_carpeta/buscar_tarea_menu";
-import { verTarea } from "./menus_carpeta/ver_tarea_menu";
+import { menuVerTarea } from "./menus_carpeta/ver_tarea_menu";
 const prompt = promptSync();
 
 cargarTareas();
@@ -26,7 +26,7 @@ export async function menu_principal(){
             case "1":
                 limpiarPantalla();
                 console.log("TAREAS")
-                await verTarea()
+                await menuVerTarea()
             break;
 
             case "2":

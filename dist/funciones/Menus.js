@@ -23,8 +23,7 @@ async function menu_principal() {
             case "1":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("TAREAS");
-                await (0, ver_tarea_menu_1.verTarea)();
-                prompt("voler [ENTER] > ");
+                await (0, ver_tarea_menu_1.menuVerTarea)();
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();
