@@ -5,6 +5,7 @@ const AlmacenTareas_1 = require("../../clases/AlmacenTareas");
 //@ts-ignore
 const inquirer = require("inquirer");
 const Reportes_1 = require("../Reportes");
+const funciones_sistema_1 = require("../funciones_sistema");
 async function menuVerTarea() {
     const tareas = AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false);
     console.table(tareas, ["id", "titulo", "estado", "vencimiento"]);
@@ -14,9 +15,11 @@ async function menuVerTarea() {
         switch (opcion) {
             case "1":
                 const tareaDet = await tareasDetalladas(tareas);
+                (0, funciones_sistema_1.limpiarPantalla)();
                 console.table([tareaDet]);
                 break;
             case "2":
+                (0, funciones_sistema_1.limpiarPantalla)();
                 const prioridad = tareasPrioridad(tareas);
                 if (!prioridad || prioridad.length == 0) {
                     console.log("Aun No Hay Tareas de Alta Prioridad");

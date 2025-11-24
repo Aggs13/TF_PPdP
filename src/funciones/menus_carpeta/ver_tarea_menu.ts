@@ -3,6 +3,7 @@ import { almacenTareas } from "../../clases/AlmacenTareas";
 import * as inquirer from "inquirer";
 import { Tarea } from "../../clases/Tarea";
 import { buscarDificultad } from "../Reportes";
+import { limpiarPantalla } from "../funciones_sistema";
 
 
 
@@ -15,39 +16,43 @@ export async function menuVerTarea(){
         switch(opcion){
             case "1":
                 const tareaDet = await tareasDetalladas(tareas)
+                limpiarPantalla()
                 console.table([tareaDet]);
-                break;
+            break;
+
             case "2":
+                limpiarPantalla()
                 const prioridad=tareasPrioridad(tareas);
                 if(!prioridad|| prioridad.length==0){
                     console.log("Aun No Hay Tareas de Alta Prioridad")
                     return;
                 }
                 console.table(prioridad);
-                break;
+            break;
+
             default:
                 console.log("Volviendo...");
-                break
+            break
     }
 }while(opcion != "0")
 }
 
 //Sub Menu
 async function subMenu(){
-              const {opcion} = await inquirer.prompt([
-                {
-                  type: "list",
-                  name: "opcion",
-                  message: "> Que Desea Hacer?",
-                  choices: [
-                  { name: "Ver Detalladamente una de las Tareas  ", value: "1" },
-                  { name: "Ver Tareas de Prioridad Alta  ", value: "2" },
-                  { name: "Volver       ", value: "0"}
-                  ]
-                }
-              ]);
-              
-              return opcion;
+    const {opcion} = await inquirer.prompt([
+    {
+        type: "list",
+        name: "opcion",
+        message: "> Que Desea Hacer?",
+        choices: [
+        { name: "Ver Detalladamente una de las Tareas  ", value: "1" },
+        { name: "Ver Tareas de Prioridad Alta  ", value: "2" },
+        { name: "Volver       ", value: "0"}
+        ]
+    }
+    ]);
+    
+    return opcion;
 }
 //Tareas Detalladas
 async function tareasDetalladas(tareasFiltradas: Tarea[]) {
@@ -56,18 +61,18 @@ async function tareasDetalladas(tareasFiltradas: Tarea[]) {
 }
 
 async function menuDatalladas(tareasFiltradas:Tarea[]) {
-            const{opcion}= await inquirer.prompt([
-                {
-                    type:"list",
-                    name:"opcion",
-                    message:"> Elige una Tarea",
-                    choices:tareasFiltradas.map((tarea)=>({
-                        name: `ID ${tarea.id} | ${tarea.titulo} | ${tarea.estado}`,
-                        value: tarea 
-                    }))
-                }
-            ]);
-            return opcion;
+    const{opcion}= await inquirer.prompt([
+        {
+            type:"list",
+            name:"opcion",
+            message:"> Elige una Tarea",
+            choices:tareasFiltradas.map((tarea)=>({
+                name: `ID ${tarea.id} | ${tarea.titulo} | ${tarea.estado}`,
+                value: tarea 
+            }))
+        }
+    ]);
+    return opcion;
     
 }
 
