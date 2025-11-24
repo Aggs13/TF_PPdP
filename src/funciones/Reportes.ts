@@ -75,6 +75,7 @@ export function vaciarPapelera(tareas:Tarea[]){
     }
     //Buscar por ID
     export function buscarID(id:number){
+        
         return almacenTareas.getTareas.filter(t=> t.id == id)
     }
     //Buscar por Estado
@@ -85,3 +86,15 @@ export function vaciarPapelera(tareas:Tarea[]){
     export function buscarDificultad(dificultad:string){
         return almacenTareas.getTareas.filter(t=> t.dificultad=== dificultad)
     }
+
+
+
+// Editar Tarea
+
+export function selccionarConicidencia(coincidencias:Tarea[],id:number){
+  return coincidencias.filter(t => t.id == id)[0]
+}
+
+export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
+  return{...tareaAeditar,...datos}
+}
