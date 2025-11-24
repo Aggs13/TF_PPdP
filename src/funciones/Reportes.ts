@@ -36,29 +36,23 @@ export function establecerVencimiento(dias:string,fecha:Date){
 export function agregarTareaArray(newTarea:Tarea,lista:Tarea[]){
     return [...lista, newTarea];
 }
+
 // Mover a la papelera
-export function moverPapelera(id:string,tareas:Tarea[]){
-
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum) 
-    
-    if(!tareaExiste) return null
-
+export function moverPapelera(tarea:Tarea,tareas:Tarea[]){
+    const id:number = tarea.id
     return tareas.map(t => {
-       return t.id == parseInt(id) ? {...t, papelera:true} : t
+       return t.id == id ? {...t, papelera:true} : t
     })
 }
 
 // Quitar de papelera
-export function quitarPapelera(id:string,tareas:Tarea[]){
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum) 
+export function quitarPapelera(tareaSelect:Tarea,tareas:Tarea[]){
 
-    if(!tareaExiste) return null
-
+    const idNum:number = tareaSelect.id
     return tareas.map(t => {
        return t.id == idNum ? {...t, papelera:false} : t
     })
+    
 }
 
 

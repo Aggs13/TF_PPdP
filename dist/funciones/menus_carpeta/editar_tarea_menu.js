@@ -8,14 +8,12 @@ const Reportes_js_1 = require("../Reportes.js");
 const promptSync = require("prompt-sync");
 const fs = require("fs");
 const funciones_sistema_js_1 = require("../funciones_sistema.js");
-//@ts-ignore
-const inquirer = require("inquirer");
 const prompt = promptSync();
 async function menuEditarTarea() {
     console.clear();
     console.log("EDITAR TAREA".padEnd(50, "="));
     // Buscar tarea
-    let tareaAEditar = await menuSelectTarea(AlmacenTareas_js_1.almacenTareas.getTareas);
+    let tareaAEditar = await (0, funciones_sistema_js_1.menuSelectTarea)(AlmacenTareas_js_1.almacenTareas.getTareas, false);
     if (!tareaAEditar)
         return;
     const id = tareaAEditar.id;
@@ -31,7 +29,7 @@ function menuCambiarValores(tareaAEditar, id) {
     console.log("[1] Facil [2] Normal [3] Dificil");
     const opcionDificultad = prompt(`Dificultad actual [${tareaAEditar.dificultad}] → opción: `) || "0";
     const dificultad = opcionDificultad === "0" ? tareaAEditar.dificultad : ((0, Reportes_js_1.validarDificultad)(opcionDificultad) || tareaAEditar.dificultad);
-    console.log("[1] Pendiente [2] En Proceso [3] Cancelado [4] Terminado");
+    console.log("[1] Pendiente [2] En Proceso [3] Terminado [4] Cancelado");
     const opcionEstado = prompt(`Estado actual [${tareaAEditar.estado}] → opción: `) || "0";
     const estado = opcionEstado === "0" ? tareaAEditar.estado : ((0, Reportes_js_1.validarEstado)(opcionEstado) || tareaAEditar.estado);
     console.log(`Vencimiento actual: ${tareaAEditar.vencimiento || "sin fecha"}`);
@@ -43,19 +41,4 @@ function menuCambiarValores(tareaAEditar, id) {
     const index = AlmacenTareas_js_1.almacenTareas.getTareas.findIndex(t => t.id == id);
     AlmacenTareas_js_1.almacenTareas.getTareas[index] = tareaAEditar;
     fs.writeFileSync((0, funciones_sistema_js_1.obtener_path)(), JSON.stringify(AlmacenTareas_js_1.almacenTareas.getTareas, null, 2));
-}
-async function menuSelectTarea(tareas) {
-    const { opcion } = await inquirer.prompt([
-        {
-            type: "list",
-            name: "opcion",
-            message: "> Elige una Tarea",
-            choices: tareas.map((t) => ({
-                name: `ID ${t.id} | ${t.titulo} | ${t.estado}`,
-                value: t
-            }))
-        }
-    ]);
-    let tareaSelect = opcion;
-    return tareaSelect;
 }

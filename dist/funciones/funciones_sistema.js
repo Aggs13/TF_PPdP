@@ -4,9 +4,12 @@ exports.limpiarPantalla = limpiarPantalla;
 exports.obtener_path = obtener_path;
 exports.path_txt = path_txt;
 exports.cargarTareas = cargarTareas;
+exports.menuSelectTarea = menuSelectTarea;
 const path = require("path");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const fs = require("fs");
+//@ts-ignore
+const inquirer = require("inquirer");
 function limpiarPantalla() {
     process.stdout.write('\x1Bc');
 }
@@ -24,4 +27,24 @@ function cargarTareas() {
     for (const t of cargadas) {
         AlmacenTareas_1.almacenTareas.agregar(t);
     }
+}
+async function menuSelectTarea(tareas, papelera) {
+    const opcionesTareas = tareas.filter(t => t.papelera === papelera);
+    const { opcion } = await inquirer.prompt([
+        {
+            type: "list",
+            name: "opcion",
+            message: "> Elige una Tarea",
+            choices: [
+                ...opcionesTareas.map((t) => ({
+                    name: `ID ${t.id} | ${t.titulo} | ${t.estado}`, value: t
+                })),
+                { name: "Cancelar", value: -1 }
+            ]
+        }
+    ]);
+    if (opcion == -1)
+        return;
+    let tareaSelect = opcion;
+    return tareaSelect;
 }

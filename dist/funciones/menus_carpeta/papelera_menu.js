@@ -20,15 +20,10 @@ async function menuPapelera() {
             console.log("✅ Papelera Vaciada!! ");
             break;
         case "2":
-            console.log("[ENTER] Cancelar");
-            const idTarea = prompt("Ingrese el ID>") || "-1";
-            const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
-            const nuevoArray = (0, Reportes_1.quitarPapelera)(idTarea, tareasActuales);
-            if (nuevoArray === null) {
-                console.log("❌ No se encontró una tarea con ese ID");
-                prompt("volver [ENTER] > ");
+            const tarea = await (0, funciones_sistema_1.menuSelectTarea)(AlmacenTareas_1.almacenTareas.getTareas, true);
+            if (!tarea)
                 return;
-            }
+            const nuevoArray = (0, Reportes_1.quitarPapelera)(tarea, AlmacenTareas_1.almacenTareas.getTareas);
             AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;
             fs.writeFileSync((0, funciones_sistema_1.obtener_path)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
             console.log("✅ Tarea restaurada! -> ♻");
@@ -39,16 +34,13 @@ async function menuPapelera() {
             break;
     }
 }
-function menuMoverAPalera() {
-    console.table(AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false), ["id", "titulo", "estado", "vencimiento"]);
-    const idTarea = prompt("Ingrese el ID > ") || "-1";
-    const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
-    const nuevoArray = (0, Reportes_1.moverPapelera)(idTarea, tareasActuales);
-    if (nuevoArray === null) {
-        console.log("❌ No se encontró una tarea con ese ID");
-        prompt("volver [ENTER] > ");
+async function menuMoverAPalera() {
+    console.log("Selecciones una tarea");
+    const tareaSelec = await (0, funciones_sistema_1.menuSelectTarea)(AlmacenTareas_1.almacenTareas.getTareas, false);
+    if (!tareaSelec)
         return;
-    }
+    const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
+    const nuevoArray = (0, Reportes_1.moverPapelera)(tareaSelec, tareasActuales);
     AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;
     fs.writeFileSync((0, funciones_sistema_1.obtener_path)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
     console.log(`✅ Tarea a la pepelera!! -> 🚮 `);

@@ -40,21 +40,15 @@ function agregarTareaArray(newTarea, lista) {
     return [...lista, newTarea];
 }
 // Mover a la papelera
-function moverPapelera(id, tareas) {
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum);
-    if (!tareaExiste)
-        return null;
+function moverPapelera(tarea, tareas) {
+    const id = tarea.id;
     return tareas.map(t => {
-        return t.id == parseInt(id) ? { ...t, papelera: true } : t;
+        return t.id == id ? { ...t, papelera: true } : t;
     });
 }
 // Quitar de papelera
-function quitarPapelera(id, tareas) {
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum);
-    if (!tareaExiste)
-        return null;
+function quitarPapelera(tareaSelect, tareas) {
+    const idNum = tareaSelect.id;
     return tareas.map(t => {
         return t.id == idNum ? { ...t, papelera: false } : t;
     });

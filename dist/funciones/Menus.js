@@ -51,7 +51,7 @@ async function menu_principal() {
             case "6":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("ELIMINAR");
-                (0, papelera_menu_1.menuMoverAPalera)();
+                await (0, papelera_menu_1.menuMoverAPalera)();
                 break;
             case "0":
                 (0, funciones_sistema_1.limpiarPantalla)();
