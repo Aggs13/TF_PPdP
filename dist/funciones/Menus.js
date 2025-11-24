@@ -34,7 +34,7 @@ async function menu_principal() {
             case "3":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("EDITAR TAREA");
-                (0, editar_tarea_menu_js_1.menuEditarTarea)();
+                await (0, editar_tarea_menu_js_1.menuEditarTarea)();
                 break;
             case "4":
                 (0, funciones_sistema_1.limpiarPantalla)();
@@ -49,7 +49,7 @@ async function menu_principal() {
             case "6":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("ELIMINAR");
-                (0, papelera_menu_1.menuMoverAPalera)();
+                await (0, papelera_menu_1.menuMoverAPalera)();
                 break;
             case "0":
                 (0, funciones_sistema_1.limpiarPantalla)();

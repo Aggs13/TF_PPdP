@@ -23,8 +23,4 @@ export class AlmacenTareas {
 
 }
 
-
-
-
-
 export const almacenTareas = new AlmacenTareas;

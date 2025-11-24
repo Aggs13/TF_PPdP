@@ -36,29 +36,23 @@ export function establecerVencimiento(dias:string,fecha:Date){
 export function agregarTareaArray(newTarea:Tarea,lista:Tarea[]){
     return [...lista, newTarea];
 }
+
 // Mover a la papelera
-export function moverPapelera(id:string,tareas:Tarea[]){
-
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum) 
-    
-    if(!tareaExiste) return null
-
+export function moverPapelera(tarea:Tarea,tareas:Tarea[]){
+    const id:number = tarea.id
     return tareas.map(t => {
-       return t.id == parseInt(id) ? {...t, papelera:true} : t
+       return t.id == id ? {...t, papelera:true} : t
     })
 }
 
 // Quitar de papelera
-export function quitarPapelera(id:string,tareas:Tarea[]){
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum) 
+export function quitarPapelera(tareaSelect:Tarea,tareas:Tarea[]){
 
-    if(!tareaExiste) return null
-
+    const idNum:number = tareaSelect.id
     return tareas.map(t => {
        return t.id == idNum ? {...t, papelera:false} : t
     })
+    
 }
 
 
@@ -75,6 +69,7 @@ export function vaciarPapelera(tareas:Tarea[]){
     }
     //Buscar por ID
     export function buscarID(id:number){
+        
         return almacenTareas.getTareas.filter(t=> t.id == id)
     }
     //Buscar por Estado
@@ -85,3 +80,15 @@ export function vaciarPapelera(tareas:Tarea[]){
     export function buscarDificultad(dificultad:string){
         return almacenTareas.getTareas.filter(t=> t.dificultad=== dificultad)
     }
+
+
+
+// Editar Tarea
+
+export function selccionarConicidencia(coincidencias:Tarea[],id:number){
+  return coincidencias.filter(t => t.id == id)[0]
+}
+
+export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
+  return{...tareaAeditar,...datos}
+}

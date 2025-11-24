@@ -12,6 +12,8 @@ exports.buscarTareaTitulo = buscarTareaTitulo;
 exports.buscarID = buscarID;
 exports.buscarEstado = buscarEstado;
 exports.buscarDificultad = buscarDificultad;
+exports.selccionarConicidencia = selccionarConicidencia;
+exports.crearCambios = crearCambios;
 const Tarea_1 = require("../clases/Tarea");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera) {
@@ -38,21 +40,15 @@ function agregarTareaArray(newTarea, lista) {
     return [...lista, newTarea];
 }
 // Mover a la papelera
-function moverPapelera(id, tareas) {
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum);
-    if (!tareaExiste)
-        return null;
+function moverPapelera(tarea, tareas) {
+    const id = tarea.id;
     return tareas.map(t => {
-        return t.id == parseInt(id) ? { ...t, papelera: true } : t;
+        return t.id == id ? { ...t, papelera: true } : t;
     });
 }
 // Quitar de papelera
-function quitarPapelera(id, tareas) {
-    const idNum = parseInt(id);
-    const tareaExiste = tareas.some(t => t.id == idNum);
-    if (!tareaExiste)
-        return null;
+function quitarPapelera(tareaSelect, tareas) {
+    const idNum = tareaSelect.id;
     return tareas.map(t => {
         return t.id == idNum ? { ...t, papelera: false } : t;
     });
@@ -78,4 +74,11 @@ function buscarEstado(estado) {
 //Buscar por Dificultad
 function buscarDificultad(dificultad) {
     return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.dificultad === dificultad);
+}
+// Editar Tarea
+function selccionarConicidencia(coincidencias, id) {
+    return coincidencias.filter(t => t.id == id)[0];
+}
+function crearCambios(tareaAeditar, datos) {
+    return { ...tareaAeditar, ...datos };
 }
