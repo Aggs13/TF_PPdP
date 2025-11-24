@@ -40,7 +40,7 @@ export async function menu_principal(){
             case "3":
                 limpiarPantalla();
                 console.log("EDITAR TAREA");
-                menuEditarTarea();
+                await menuEditarTarea();
             break;
 
             case "4":

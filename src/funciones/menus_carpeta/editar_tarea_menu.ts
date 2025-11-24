@@ -1,33 +1,35 @@
 // src/funciones/menus_carpeta/editar_tarea_menu.ts
 import { almacenTareas } from "../../clases/AlmacenTareas.js";
 import { Tarea } from "../../clases/Tarea.js";
-import { validarDificultad, validarEstado, establecerVencimiento, buscarTareaTitulo, buscarID, crearCambios, SelccionarConicidencia } from "../Reportes.js";
+import { validarDificultad, validarEstado, establecerVencimiento, buscarTareaTitulo, buscarID, crearCambios, selccionarConicidencia } from "../Reportes.js";
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
 import { obtener_path } from "../funciones_sistema.js";
+//@ts-ignore
+import * as inquirer from "inquirer";
 
 const prompt = promptSync();
 
-export function menuEditarTarea() {
+export async function menuEditarTarea() {
   console.clear();
   console.log("EDITAR TAREA".padEnd(50, "="));
 
   // Buscar tarea
-  const criterio:string = prompt("Buscar por (1) ID o (2) Título? ");
-  let tareaAEditar: Tarea | undefined;
 
-  switch (criterio){
-    case "1":
-      const id = Number(prompt("Ingrese ID de la tarea: "));
-      tareaAEditar = buscarID(id)[0];
-    break;
+  let tareaAEditar:Tarea = await menuSelectTarea(almacenTareas.getTareas)
 
-    case "2":
-      tareaAEditar = menuEditPorNombre(tareaAEditar)
-    break;
+  if(!tareaAEditar) return
+
+    const id:number = tareaAEditar.id
+    menuCambiarValores(tareaAEditar,id)
+    console.log("\nTarea editada exitosamente!");
+    prompt("Presione Enter para continuar...");
   }
-    
+
+
+function menuCambiarValores(tareaAEditar:Tarea,id:number){
+
   console.log(`\nEditando tarea #${tareaAEditar.id} - ${tareaAEditar.titulo}`);
   console.log("Deje en blanco para mantener el valor actual\n");
 
@@ -47,10 +49,8 @@ export function menuEditarTarea() {
   const vencimiento = dias.trim() === "" ? tareaAEditar.vencimiento : establecerVencimiento(dias, new Date());
 
 
-
-  // nuevos valores de tarea
-  const id:number = tareaAEditar.id
-  const datosArray = {id,titulo,descripcion,dificultad,estado,vencimiento}
+  // pasa nuevos valores a la funcion
+  const datosArray = {titulo,descripcion,dificultad,estado,vencimiento}
   tareaAEditar = crearCambios(tareaAEditar,datosArray)
 
   const index = almacenTareas.getTareas.findIndex(t=> t.id == id)
@@ -58,33 +58,23 @@ export function menuEditarTarea() {
 
   fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas, null, 2));
 
-  console.log("\nTarea editada exitosamente!");
-  prompt("Presione Enter para continuar...");
 }
 
 
+async function menuSelectTarea(tareas:Tarea[]) {
 
-
-
-
-
-function menuEditPorNombre(tareaAEditar:Tarea|undefined){
-  const texto = prompt("Ingrese título (o parte del título): ");
-    const coincidencias = buscarTareaTitulo(texto)
-
-    if (!tareaAEditar || coincidencias.length === 0) {
-      console.log("Tarea no encontrada o está en la papelera");
-      prompt("\nPresione Enter...");
-      return;
+  const{opcion} = await inquirer.prompt([
+    {
+      type:"list",
+      name:"opcion",
+      message:"> Elige una Tarea",
+      choices:tareas.map((t)=>({
+        name: `ID ${t.id} | ${t.titulo} | ${t.estado}`,
+        value: t 
+      }))
     }
+  ]);
+  let tareaSelect:Tarea = opcion
+  return tareaSelect
 
-    if (coincidencias.length > 1) {
-      console.log("\nCoincidencias encontradas:");
-      coincidencias.forEach(t => console.log(`${t.id} → ${t.titulo}`));
-      const id = Number(prompt("Ingrese el ID exacto: "));
-      return tareaAEditar = SelccionarConicidencia(coincidencias,id);
-    } else {
-
-      return tareaAEditar = coincidencias[0];
-    }
-} 
+}

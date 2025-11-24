@@ -12,7 +12,7 @@ exports.buscarTareaTitulo = buscarTareaTitulo;
 exports.buscarID = buscarID;
 exports.buscarEstado = buscarEstado;
 exports.buscarDificultad = buscarDificultad;
-exports.SelccionarConicidencia = SelccionarConicidencia;
+exports.selccionarConicidencia = selccionarConicidencia;
 exports.crearCambios = crearCambios;
 const Tarea_1 = require("../clases/Tarea");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
@@ -82,7 +82,7 @@ function buscarDificultad(dificultad) {
     return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.dificultad === dificultad);
 }
 // Editar Tarea
-function SelccionarConicidencia(coincidencias, id) {
+function selccionarConicidencia(coincidencias, id) {
     return coincidencias.filter(t => t.id == id)[0];
 }
 function crearCambios(tareaAeditar, datos) {
