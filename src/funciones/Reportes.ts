@@ -92,3 +92,16 @@ export function selccionarConicidencia(coincidencias:Tarea[],id:number){
 export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
   return{...tareaAeditar,...datos}
 }
+
+
+// estadisticas 
+
+export function promEstado(tareas:Tarea[]){
+    const pendiente:number =( tareas.filter(t => t.estado == "pendiente").length * 100)/ tareas.length
+    const enProceso:number =(tareas.filter(t => t.estado == "En Proceso").length * 100) / tareas.length
+    const terminado:number =(tareas.filter(t => t.estado == "Terminado").length * 100) / tareas.length
+    const cancelado:number =(tareas.filter(t => t.estado == "Cancelado").length * 100) / tareas.length
+
+    return{pendiente,enProceso,terminado,cancelado}
+
+}
