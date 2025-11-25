@@ -1,7 +1,7 @@
 // src/funciones/menus_carpeta/editar_tarea_menu.ts
 import { almacenTareas } from "../../clases/AlmacenTareas.js";
 import { Tarea } from "../../clases/Tarea.js";
-import { validarDificultad, validarEstado, establecerVencimiento, buscarTareaTitulo, buscarID, crearCambios, selccionarConicidencia } from "../Reportes.js";
+import { validarDificultad, validarEstado, establecerVencimiento, buscarTareaTitulo, buscarID, crearCambios, selccionarConicidencia, establecerFechaEdicion } from "../Reportes.js";
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
@@ -13,7 +13,7 @@ const prompt = promptSync();
 
 export async function menuEditarTarea() {
   console.clear();
-  console.log("EDITAR TAREA".padEnd(50, "="));
+  console.log("EDITAR TAREA");
 
   // Buscar tarea
 
@@ -49,9 +49,11 @@ function menuCambiarValores(tareaAEditar:Tarea,id:number){
   const dias = prompt("¿En cuántos días vence ahora? (vacío = mantener): ");
   const vencimiento = dias.trim() === "" ? tareaAEditar.vencimiento : establecerVencimiento(dias, new Date());
 
+  
+  const ultima_Edicion = establecerFechaEdicion(new Date())
 
   // pasa nuevos valores a la funcion
-  const datosArray = {titulo,descripcion,dificultad,estado,vencimiento}
+  const datosArray = {titulo,descripcion,dificultad,estado,ultima_Edicion,vencimiento}
   tareaAEditar = crearCambios(tareaAEditar,datosArray)
 
   const index = almacenTareas.getTareas.findIndex(t=> t.id == id)

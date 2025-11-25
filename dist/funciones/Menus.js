@@ -6,12 +6,12 @@ exports.menu_principal = menu_principal;
 const promptSync = require("prompt-sync");
 // @ts-ignore
 const inquirer = require("inquirer");
-const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 const nueva_tarea_menu_1 = require("./menus_carpeta/nueva_tarea_menu");
 const funciones_sistema_1 = require("./funciones_sistema");
 const editar_tarea_menu_js_1 = require("./menus_carpeta/editar_tarea_menu.js");
 const papelera_menu_1 = require("./menus_carpeta/papelera_menu");
 const buscar_tarea_menu_1 = require("./menus_carpeta/buscar_tarea_menu");
+const ver_tarea_menu_1 = require("./menus_carpeta/ver_tarea_menu");
 const prompt = promptSync();
 (0, funciones_sistema_1.cargarTareas)();
 async function menu_principal() {
@@ -23,9 +23,7 @@ async function menu_principal() {
             case "1":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("TAREAS");
-                const tareas = AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false);
-                console.table(tareas, ["id", "titulo", "estado", "vencimiento"]);
-                prompt("voler [ENTER] > ");
+                await (0, ver_tarea_menu_1.menuVerTarea)();
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();

@@ -96,12 +96,32 @@ export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
 
 // estadisticas 
 
+// promedio estados 
 export function promEstado(tareas:Tarea[]){
-    const pendiente:number =( tareas.filter(t => t.estado == "pendiente").length * 100)/ tareas.length
-    const enProceso:number =(tareas.filter(t => t.estado == "En Proceso").length * 100) / tareas.length
-    const terminado:number =(tareas.filter(t => t.estado == "Terminado").length * 100) / tareas.length
-    const cancelado:number =(tareas.filter(t => t.estado == "Cancelado").length * 100) / tareas.length
+    const pendiente:number =( tareas.filter(t => t.estado == "Pendiente").filter(t => t.papelera == false).length * 100)/ tareas.filter(t => t.papelera == false).length
+    const enProceso:number =(tareas.filter(t => t.estado == "En Proceso").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
+    const terminado:number =(tareas.filter(t => t.estado == "Terminado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
+    const cancelado:number =(tareas.filter(t => t.estado == "Cancelado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
 
     return{pendiente,enProceso,terminado,cancelado}
 
 }
+
+
+
+export function establecerFechaEdicion(fecha:Date){
+    const fechaEdicion = new Date(fecha.getTime());
+    return fechaEdicion.toLocaleDateString("es-AR");
+}
+//porcentaje/Cantidad tareas
+    export function totalTareas(tareas: Tarea[]){
+        return tareas.length
+    }
+    export function cantidadDificultad(tareas:Tarea[],dificultad:string){
+        return tareas.filter(tarea=> tarea.dificultad === dificultad).length
+    }
+    export function calculoTarea(tareas:Tarea[],dificultad:string){
+        const total:number= totalTareas(tareas);
+        const calculoDIf:number=cantidadDificultad(tareas,dificultad)
+        return (calculoDIf*100)/total;
+    }

@@ -76,5 +76,71 @@
     "vencimiento": "25/11/2025",
     "papelera": false,
     "desc": "aaaaa"
+  },
+  {
+    "id": 47845,
+    "titulo": "Tarea[47845]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "24/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "4/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 42279,
+    "titulo": "enzo",
+    "descripcion": "fff",
+    "estado": "Terminado",
+    "dificultad": "Normal",
+    "creacion": "24/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "26/11/2025",
+    "papelera": false
+  },
+  {
+    "id": 57378,
+    "titulo": "Tarea[57378]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Normal",
+    "creacion": "25/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "5/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 16595,
+    "titulo": "Tarea[16595]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Normal",
+    "creacion": "25/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "5/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 44648,
+    "titulo": "Tarea[44648]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "25/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "5/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 37450,
+    "titulo": "Tarea[37450]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Dificil",
+    "creacion": "25/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "5/12/2025",
+    "papelera": false
   }
 ]

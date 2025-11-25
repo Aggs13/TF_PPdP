@@ -3,7 +3,7 @@ import path = require("path");
 // @ts-ignore
 import * as inquirer from "inquirer";
 import { buscarTareaTitulo, buscarDificultad, buscarEstado, buscarID } from "../Reportes";
-const listaDificultades: string[] = ["Facil", "Medio", "Dificil"];
+const listaDificultades: string[] = ["Facil", "Normal", "Dificil"];
 const listaEstados: string[] = ["Pendiente", "En Proceso", "Terminada", "Cancelada"];
 
 // @ts-ignore
@@ -74,7 +74,7 @@ import { limpiarPantalla } from "../funciones_sistema";
                 type:"list",
                 name:"opcion",
                 message:"> Elige un Estado",
-                choices:listaEstados.map((estado,i)=>({
+                choices:listaEstados.map((estado)=>({
                     name: estado,
                     value: estado 
                 }))
