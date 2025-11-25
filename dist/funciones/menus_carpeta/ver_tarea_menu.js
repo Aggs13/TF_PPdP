@@ -4,8 +4,8 @@ exports.menuVerTarea = menuVerTarea;
 const AlmacenTareas_1 = require("../../clases/AlmacenTareas");
 //@ts-ignore
 const inquirer = require("inquirer");
-const Reportes_1 = require("../Reportes");
 const funciones_sistema_1 = require("../funciones_sistema");
+const Reportes_1 = require("../Reportes");
 async function menuVerTarea() {
     const tareas = AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false);
     console.table(tareas, ["id", "titulo", "estado", "vencimiento"]);

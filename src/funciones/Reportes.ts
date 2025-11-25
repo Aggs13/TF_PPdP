@@ -99,10 +99,10 @@ export function establecerFechaEdicion(fecha:Date){
 }
 //porcentaje/Cantidad tareas
     export function totalTareas(tareas: Tarea[]){
-        return tareas.length
+        return tareas.filter(t=>t.papelera==false).length
     }
     export function cantidadDificultad(tareas:Tarea[],dificultad:string){
-        return tareas.filter(tarea=> tarea.dificultad === dificultad).length
+        return tareas.filter(tarea=> tarea.dificultad === dificultad).filter(t=>t.papelera==false).length
     }
     export function calculoTarea(tareas:Tarea[],dificultad:string){
         const total:number= totalTareas(tareas);

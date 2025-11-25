@@ -89,12 +89,13 @@ function crearCambios(tareaAeditar, datos) {
 function establecerFechaEdicion(fecha) {
     const fechaEdicion = new Date(fecha.getTime());
     return fechaEdicion.toLocaleDateString("es-AR");
+}
 //porcentaje/Cantidad tareas
 function totalTareas(tareas) {
-    return tareas.length;
+    return tareas.filter(t => t.papelera == false).length;
 }
 function cantidadDificultad(tareas, dificultad) {
-    return tareas.filter(tarea => tarea.dificultad === dificultad).length;
+    return tareas.filter(tarea => tarea.dificultad === dificultad).filter(t => t.papelera == false).length;
 }
 function calculoTarea(tareas, dificultad) {
     const total = totalTareas(tareas);
