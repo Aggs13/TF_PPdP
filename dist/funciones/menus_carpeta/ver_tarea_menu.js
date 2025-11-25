@@ -27,6 +27,12 @@ async function menuVerTarea() {
                 }
                 console.table(prioridad);
                 break;
+            case "3":
+                console.log("Total de Taras: ", (0, Reportes_1.totalTareas)(AlmacenTareas_1.almacenTareas.getTareas));
+                console.log("Tareas Faciles: %", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Facil"));
+                console.log("Tareas Normales: %", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Normal"));
+                console.log("Tareas Dificiles: %", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Dificil"));
+                break;
             default:
                 console.log("Volviendo...");
                 break;
@@ -43,6 +49,7 @@ async function subMenu() {
             choices: [
                 { name: "Ver Detalladamente una de las Tareas  ", value: "1" },
                 { name: "Ver Tareas de Prioridad Alta  ", value: "2" },
+                { name: "Ver las Estadisticas de las Tareas  ", value: "3" },
                 { name: "Volver       ", value: "0" }
             ]
         }

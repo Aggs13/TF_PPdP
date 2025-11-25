@@ -97,3 +97,15 @@ export function establecerFechaEdicion(fecha:Date){
     const fechaEdicion = new Date(fecha.getTime());
     return fechaEdicion.toLocaleDateString("es-AR");
 }
+//porcentaje/Cantidad tareas
+    export function totalTareas(tareas: Tarea[]){
+        return tareas.length
+    }
+    export function cantidadDificultad(tareas:Tarea[],dificultad:string){
+        return tareas.filter(tarea=> tarea.dificultad === dificultad).length
+    }
+    export function calculoTarea(tareas:Tarea[],dificultad:string){
+        const total:number= totalTareas(tareas);
+        const calculoDIf:number=cantidadDificultad(tareas,dificultad)
+        return (calculoDIf*100)/total;
+    }
