@@ -93,6 +93,22 @@ export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
   return{...tareaAeditar,...datos}
 }
 
+
+// estadisticas 
+
+// promedio estados 
+export function promEstado(tareas:Tarea[]){
+    const pendiente:number =( tareas.filter(t => t.estado == "Pendiente").filter(t => t.papelera == false).length * 100)/ tareas.filter(t => t.papelera == false).length
+    const enProceso:number =(tareas.filter(t => t.estado == "En Proceso").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
+    const terminado:number =(tareas.filter(t => t.estado == "Terminado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
+    const cancelado:number =(tareas.filter(t => t.estado == "Cancelado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
+
+    return{pendiente,enProceso,terminado,cancelado}
+
+}
+
+
+
 export function establecerFechaEdicion(fecha:Date){
     const fechaEdicion = new Date(fecha.getTime());
     return fechaEdicion.toLocaleDateString("es-AR");

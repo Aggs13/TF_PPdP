@@ -19,7 +19,7 @@
     "creacion": "21/11/2025",
     "ultima_Edicion": "",
     "vencimiento": "1/12/2025",
-    "papelera": true
+    "papelera": false
   },
   {
     "id": 14186,

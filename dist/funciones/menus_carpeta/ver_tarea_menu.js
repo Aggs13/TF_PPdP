@@ -29,9 +29,13 @@ async function menuVerTarea() {
                 break;
             case "3":
                 console.log("Total de Taras: ", (0, Reportes_1.totalTareas)(AlmacenTareas_1.almacenTareas.getTareas));
-                console.log("Tareas Faciles: %", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Facil"));
-                console.log("Tareas Normales: %", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Normal"));
-                console.log("Tareas Dificiles: %", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Dificil"));
+                console.log("Tareas Faciles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Facil"), "%");
+                console.log("Tareas Normales: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Normal"), "%");
+                console.log("Tareas Dificiles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Dificil"), "%");
+                console.log("-----------------------------------");
+                const promedios = (0, Reportes_1.promEstado)(AlmacenTareas_1.almacenTareas.getTareas);
+                console.log(`Pendiente ${promedios.pendiente}% | En Proceso ${promedios.enProceso}% | Terminado ${promedios.terminado} | Cancelado ${promedios.cancelado} `);
+                console.log("-----------------------------------");
                 break;
             default:
                 console.log("Volviendo...");

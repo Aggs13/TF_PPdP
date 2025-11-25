@@ -14,6 +14,7 @@ exports.buscarEstado = buscarEstado;
 exports.buscarDificultad = buscarDificultad;
 exports.selccionarConicidencia = selccionarConicidencia;
 exports.crearCambios = crearCambios;
+exports.promEstado = promEstado;
 exports.establecerFechaEdicion = establecerFechaEdicion;
 exports.totalTareas = totalTareas;
 exports.cantidadDificultad = cantidadDificultad;
@@ -85,6 +86,15 @@ function selccionarConicidencia(coincidencias, id) {
 }
 function crearCambios(tareaAeditar, datos) {
     return { ...tareaAeditar, ...datos };
+}
+// estadisticas 
+// promedio estados 
+function promEstado(tareas) {
+    const pendiente = (tareas.filter(t => t.estado == "Pendiente").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
+    const enProceso = (tareas.filter(t => t.estado == "En Proceso").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
+    const terminado = (tareas.filter(t => t.estado == "Terminado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
+    const cancelado = (tareas.filter(t => t.estado == "Cancelado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
+    return { pendiente, enProceso, terminado, cancelado };
 }
 function establecerFechaEdicion(fecha) {
     const fechaEdicion = new Date(fecha.getTime());
