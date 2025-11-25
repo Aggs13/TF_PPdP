@@ -35,8 +35,9 @@ function menuCambiarValores(tareaAEditar, id) {
     console.log(`Vencimiento actual: ${tareaAEditar.vencimiento || "sin fecha"}`);
     const dias = prompt("¿En cuántos días vence ahora? (vacío = mantener): ");
     const vencimiento = dias.trim() === "" ? tareaAEditar.vencimiento : (0, Reportes_js_1.establecerVencimiento)(dias, new Date());
+    const ultima_Edicion = (0, Reportes_js_1.establecerFechaEdicion)(new Date());
     // pasa nuevos valores a la funcion
-    const datosArray = { titulo, descripcion, dificultad, estado, vencimiento };
+    const datosArray = { titulo, descripcion, dificultad, estado, ultima_Edicion, vencimiento };
     tareaAEditar = (0, Reportes_js_1.crearCambios)(tareaAEditar, datosArray);
     const index = AlmacenTareas_js_1.almacenTareas.getTareas.findIndex(t => t.id == id);
     AlmacenTareas_js_1.almacenTareas.getTareas[index] = tareaAEditar;
