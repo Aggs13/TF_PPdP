@@ -92,3 +92,8 @@ export function selccionarConicidencia(coincidencias:Tarea[],id:number){
 export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
   return{...tareaAeditar,...datos}
 }
+
+export function establecerFechaEdicion(fecha:Date){
+    const fechaEdicion = new Date(fecha.getTime());
+    return fechaEdicion.toLocaleDateString("es-AR");
+}

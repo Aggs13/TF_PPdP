@@ -14,6 +14,7 @@ exports.buscarEstado = buscarEstado;
 exports.buscarDificultad = buscarDificultad;
 exports.selccionarConicidencia = selccionarConicidencia;
 exports.crearCambios = crearCambios;
+exports.establecerFechaEdicion = establecerFechaEdicion;
 const Tarea_1 = require("../clases/Tarea");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera) {
@@ -81,4 +82,8 @@ function selccionarConicidencia(coincidencias, id) {
 }
 function crearCambios(tareaAeditar, datos) {
     return { ...tareaAeditar, ...datos };
+}
+function establecerFechaEdicion(fecha) {
+    const fechaEdicion = new Date(fecha.getTime());
+    return fechaEdicion.toLocaleDateString("es-AR");
 }
