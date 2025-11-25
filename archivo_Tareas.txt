@@ -76,5 +76,27 @@
     "vencimiento": "25/11/2025",
     "papelera": false,
     "desc": "aaaaa"
+  },
+  {
+    "id": 47845,
+    "titulo": "Tarea[47845]",
+    "descripcion": "",
+    "estado": "Pendiente",
+    "dificultad": "Facil",
+    "creacion": "24/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "4/12/2025",
+    "papelera": false
+  },
+  {
+    "id": 42279,
+    "titulo": "enzo",
+    "descripcion": "fff",
+    "estado": "Terminado",
+    "dificultad": "Normal",
+    "creacion": "24/11/2025",
+    "ultima_Edicion": "",
+    "vencimiento": "26/11/2025",
+    "papelera": false
   }
 ]
