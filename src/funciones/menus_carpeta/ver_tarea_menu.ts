@@ -2,7 +2,7 @@ import { almacenTareas } from "../../clases/AlmacenTareas";
 //@ts-ignore
 import * as inquirer from "inquirer";
 import { Tarea } from "../../clases/Tarea";
-import { buscarDificultad } from "../Reportes";
+import { buscarDificultad, calculoTarea, totalTareas } from "../Reportes";
 
 
 
@@ -25,6 +25,12 @@ export async function menuVerTarea(){
                 }
                 console.table(prioridad);
                 break;
+            case "3":
+                console.log("Total de Taras: ",totalTareas(almacenTareas.getTareas));
+                console.log("Tareas Faciles: %",calculoTarea(almacenTareas.getTareas,"Facil"))
+                console.log("Tareas Normales: %",calculoTarea(almacenTareas.getTareas,"Normal"))
+                console.log("Tareas Dificiles: %",calculoTarea(almacenTareas.getTareas,"Dificil"))
+                break;
             default:
                 console.log("Volviendo...");
                 break
@@ -42,6 +48,7 @@ async function subMenu(){
                   choices: [
                   { name: "Ver Detalladamente una de las Tareas  ", value: "1" },
                   { name: "Ver Tareas de Prioridad Alta  ", value: "2" },
+                  { name: "Ver las Estadisticas de las Tareas  ", value: "3" },
                   { name: "Volver       ", value: "0"}
                   ]
                 }
@@ -74,17 +81,13 @@ async function menuDatalladas(tareasFiltradas:Tarea[]) {
 //Tareas Prioridad
 function tareasPrioridad(tareasFiltradas:Tarea[]){
    const vencidas = verificarVencimiento(tareasFiltradas, new Date());
-
   if (vencidas.length > 0) {
     return vencidas;
   }
-
   const tareasDificiles = buscarDificultad("Dificil");
-
   if (!tareasDificiles || tareasDificiles.length === 0) {
     return null;
   }
-
   return tareasDificiles;
 }
 function verificarVencimiento(tareasFiltradas:Tarea[], fecha:Date){

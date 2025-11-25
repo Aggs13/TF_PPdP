@@ -12,6 +12,9 @@ exports.buscarTareaTitulo = buscarTareaTitulo;
 exports.buscarID = buscarID;
 exports.buscarEstado = buscarEstado;
 exports.buscarDificultad = buscarDificultad;
+exports.totalTareas = totalTareas;
+exports.cantidadDificultad = cantidadDificultad;
+exports.calculoTarea = calculoTarea;
 const Tarea_1 = require("../clases/Tarea");
 const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera) {
@@ -78,4 +81,16 @@ function buscarEstado(estado) {
 //Buscar por Dificultad
 function buscarDificultad(dificultad) {
     return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.dificultad === dificultad);
+}
+//porcentaje/Cantidad tareas
+function totalTareas(tareas) {
+    return tareas.length;
+}
+function cantidadDificultad(tareas, dificultad) {
+    return tareas.filter(tarea => tarea.dificultad === dificultad).length;
+}
+function calculoTarea(tareas, dificultad) {
+    const total = totalTareas(tareas);
+    const calculoDIf = cantidadDificultad(tareas, dificultad);
+    return (calculoDIf * 100) / total;
 }

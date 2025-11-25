@@ -85,3 +85,15 @@ export function vaciarPapelera(tareas:Tarea[]){
     export function buscarDificultad(dificultad:string){
         return almacenTareas.getTareas.filter(t=> t.dificultad=== dificultad)
     }
+//porcentaje/Cantidad tareas
+    export function totalTareas(tareas: Tarea[]){
+        return tareas.length
+    }
+    export function cantidadDificultad(tareas:Tarea[],dificultad:string){
+        return tareas.filter(tarea=> tarea.dificultad === dificultad).length
+    }
+    export function calculoTarea(tareas:Tarea[],dificultad:string){
+        const total:number= totalTareas(tareas);
+        const calculoDIf:number=cantidadDificultad(tareas,dificultad)
+        return (calculoDIf*100)/total;
+    }
