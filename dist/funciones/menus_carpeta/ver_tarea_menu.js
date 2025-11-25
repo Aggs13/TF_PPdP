@@ -28,13 +28,13 @@ async function menuVerTarea() {
                 console.table(prioridad);
                 break;
             case "3":
-                console.log("Total de Taras: ", (0, Reportes_1.totalTareas)(AlmacenTareas_1.almacenTareas.getTareas));
-                console.log("Tareas Faciles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Facil"), "%");
-                console.log("Tareas Normales: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Normal"), "%");
-                console.log("Tareas Dificiles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Dificil"), "%");
+                console.log("Total de Taras: ", (0, Reportes_1.totalTareas)(AlmacenTareas_1.almacenTareas.getTareas) - 1);
+                console.log("Tareas Faciles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Facil").toFixed(3), "%");
+                console.log("Tareas Normales: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Normal").toFixed(3), "%");
+                console.log("Tareas Dificiles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Dificil").toFixed(3), "%");
                 console.log("-----------------------------------");
                 const promedios = (0, Reportes_1.promEstado)(AlmacenTareas_1.almacenTareas.getTareas);
-                console.log(`Pendiente ${promedios.pendiente}% | En Proceso ${promedios.enProceso}% | Terminado ${promedios.terminado} | Cancelado ${promedios.cancelado} `);
+                console.log(`Pendiente ${promedios.pendiente.toFixed(3)}% | En Proceso ${promedios.enProceso.toFixed(3)}% | Terminado ${promedios.terminado.toFixed(3)} | Cancelado ${promedios.cancelado.toFixed(2)}% `);
                 console.log("-----------------------------------");
                 break;
             default:
