@@ -3,7 +3,7 @@ import { almacenTareas } from "../../clases/AlmacenTareas";
 import * as inquirer from "inquirer";
 import { Tarea } from "../../clases/Tarea";
 import { limpiarPantalla } from "../funciones_sistema";
-import { buscarDificultad, calculoTarea, totalTareas } from "../Reportes";
+import { buscarDificultad, calculoTarea, promEstado, totalTareas } from "../Reportes";
 
 
 
@@ -31,9 +31,13 @@ export async function menuVerTarea(){
                 break;
             case "3":
                 console.log("Total de Taras: ",totalTareas(almacenTareas.getTareas));
-                console.log("Tareas Faciles: %",calculoTarea(almacenTareas.getTareas,"Facil"))
-                console.log("Tareas Normales: %",calculoTarea(almacenTareas.getTareas,"Normal"))
-                console.log("Tareas Dificiles: %",calculoTarea(almacenTareas.getTareas,"Dificil"))
+                console.log("Tareas Faciles: ",calculoTarea(almacenTareas.getTareas,"Facil"),"%");
+                console.log("Tareas Normales: ",calculoTarea(almacenTareas.getTareas,"Normal"),"%");
+                console.log("Tareas Dificiles: ",calculoTarea(almacenTareas.getTareas,"Dificil"),"%");
+                console.log("-----------------------------------");
+                const promedios = promEstado(almacenTareas.getTareas);
+                console.log(`Pendiente ${promedios.pendiente}% | En Proceso ${promedios.enProceso}% | Terminado ${promedios.terminado} | Cancelado ${promedios.cancelado} `);
+                console.log("-----------------------------------");
                 break;
             default:
                 console.log("Volviendo...");
