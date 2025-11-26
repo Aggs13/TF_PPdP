@@ -3,12 +3,15 @@ import { almacenTareas } from "../../clases/AlmacenTareas";
 import * as inquirer from "inquirer";
 import { Tarea } from "../../clases/Tarea";
 import { limpiarPantalla } from "../funciones_sistema";
-import { buscarDificultad, calculoTarea, promEstado, totalTareas } from "../Reportes";
+import { buscarDificultad, calculoTarea, calcPromEstado, totalTareas } from "../Reportes";
 
 
 
 export async function menuVerTarea(){
+
+    // filtro para obtener las que no esta en la papelera
     const tareas = almacenTareas.getTareas.filter(t => t.papelera == false);
+    
     console.table(tareas,["id", "titulo", "estado", "vencimiento"]);
     let opcion: string
     do{
@@ -17,6 +20,8 @@ export async function menuVerTarea(){
             case "1":
                 const tareaDet = await menuDatalladas(tareas);
                 limpiarPantalla()
+
+                // muestra la tarea detallada
                 console.table([tareaDet]);
             break;
 
@@ -35,8 +40,7 @@ export async function menuVerTarea(){
                 console.log("Tareas Normales: ",calculoTarea(almacenTareas.getTareas,"Normal").toFixed(3),"%");
                 console.log("Tareas Dificiles: ",calculoTarea(almacenTareas.getTareas,"Dificil").toFixed(3),"%");
                 console.log("-----------------------------------");
-                const promedios = promEstado(almacenTareas.getTareas);
-                console.log(`Pendiente ${promedios.pendiente.toFixed(3)}% | En Proceso ${promedios.enProceso.toFixed(3)}% | Terminado ${promedios.terminado.toFixed(3)} | Cancelado ${promedios.cancelado.toFixed(2)}% `);
+                console.log(`Pendiente ${calcPromEstado(almacenTareas.getTareas,"Pendiente").toFixed(3)}% | En Proceso ${calcPromEstado(almacenTareas.getTareas,"En Proceso").toFixed(3)}% | Terminado ${calcPromEstado(almacenTareas.getTareas,"Terminado").toFixed(3)}% | Cancelado ${calcPromEstado(almacenTareas.getTareas,"Cancelado").toFixed(3)}% `);
                 console.log("-----------------------------------");
                 break;
             default:
@@ -77,24 +81,25 @@ async function menuDatalladas(tareasFiltradas:Tarea[]) {
             }))
         }
     ]);
+    // Retorna la tarea seleccionada
     return opcion;
     
 }
 
 //Tareas Prioridad
-
-function tareasPrioridad(tareasFiltradas:Tarea[], fecha:Date){
-   const vencidas = verificarVencimiento(tareasFiltradas, fecha);
+function tareasPrioridad(tareas:Tarea[], fecha:Date){
+   const vencidas = verificarVencimiento(tareas, fecha);
   if (vencidas.length > 0) {
     return vencidas;
   }
-  const tareasDificiles = buscarDificultad("Dificil",tareasFiltradas);
+  const tareasDificiles = buscarDificultad("Dificil",tareas);
   if (!tareasDificiles || tareasDificiles.length === 0) {
     return null;
   }
   return tareasDificiles;
 }
 
-function verificarVencimiento(tareasFiltradas:Tarea[], fecha:Date){
-   return tareasFiltradas.filter(tarea=> new Date(tarea.vencimiento)>fecha)
+
+function verificarVencimiento(tareas:Tarea[], fecha:Date){
+   return tareas.filter(tarea=> new Date(tarea.vencimiento)>fecha)
 }

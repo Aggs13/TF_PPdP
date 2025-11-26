@@ -1,22 +1,21 @@
 // src/funciones/menus_carpeta/editar_tarea_menu.ts
 import { almacenTareas } from "../../clases/AlmacenTareas.js";
 import { Tarea } from "../../clases/Tarea.js";
-import { validarDificultad, validarEstado, establecerVencimiento, buscarTareaTitulo, buscarID, crearCambios, selccionarConicidencia, establecerFechaEdicion } from "../Reportes.js";
+import { validarDificultad, validarEstado, establecerVencimiento, crearCambios, establecerFechaEdicion } from "../Reportes.js";
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
-import { menuSelectTarea, obtenerPathArchivo } from "../funciones_sistema.js";
+import { limpiarPantalla, menuSelectTarea, obtenerPathArchivo } from "../funciones_sistema.js";
 //@ts-ignore
 import * as inquirer from "inquirer";
 
 const prompt = promptSync();
 
 export async function menuEditarTarea() {
-  console.clear();
+  limpiarPantalla()
   console.log("EDITAR TAREA");
 
   // Buscar tarea
-
   let tareaAEditar:Tarea|undefined = await menuSelectTarea(almacenTareas.getTareas,false)
 
   if(!tareaAEditar) return 
@@ -50,7 +49,7 @@ function menuCambiarValores(tareaAEditar:Tarea,id:number){
   const vencimiento = dias.trim() === "" ? tareaAEditar.vencimiento : establecerVencimiento(dias, new Date());
 
   
-  const ultima_Edicion = establecerFechaEdicion(new Date())
+  const ultima_Edicion = establecerFechaEdicion(new Date());
 
   // pasa nuevos valores a la funcion
   const datosArray = {titulo,descripcion,dificultad,estado,ultima_Edicion,vencimiento}

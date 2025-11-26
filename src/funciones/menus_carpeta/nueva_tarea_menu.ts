@@ -7,11 +7,10 @@ import path = require("path");
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
 import { obtenerPathArchivo } from "../funciones_sistema";
+const prompt = promptSync();
 
 
-
-
-export function menuNuevaTarea(id:number,edit:boolean){
+export function menuNuevaTarea(id:number){
 
     const newId:number = id;
     const titulo:string = prompt("Titulo: ") || `Tarea[${id}]`;
@@ -23,8 +22,8 @@ export function menuNuevaTarea(id:number,edit:boolean){
 
     const tarea:Tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad,papelera);
     almacenTareas.agregar(tarea)
-    console.log("✅ Nueva tarea creada!!  ");
     fs.writeFileSync(obtenerPathArchivo(), JSON.stringify(almacenTareas.getTareas,null, 2))
+    console.log("✅ Nueva tarea creada!!  ");
 
 }
 
@@ -37,7 +36,7 @@ function validaciones(){
     const dificultad = validarDificultad(opcionDificultad) || "Facil";
 
     // Validar estado
-    console.log("[1] Pendiente","[2] En Proceso", "[3] Cancelado", "[4] Terminado");
+    console.log("[1] Pendiente","[2] En Proceso", "[3] Terminado", "[4] Cancelado");
     const opcionEstado = prompt("Estado: ") || "1"
     const estado = validarEstado(opcionEstado) || "Pendiente";
 
@@ -49,7 +48,3 @@ function validaciones(){
     return {dificultad, estado, vencimiento}
 }
 
-
-
-const txt:string = path.join(__dirname)
-const prompt = promptSync();

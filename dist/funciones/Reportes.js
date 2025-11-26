@@ -12,11 +12,10 @@ exports.buscarTareaTitulo = buscarTareaTitulo;
 exports.buscarID = buscarID;
 exports.buscarEstado = buscarEstado;
 exports.buscarDificultad = buscarDificultad;
-exports.selccionarConicidencia = selccionarConicidencia;
 exports.crearCambios = crearCambios;
-exports.promEstado = promEstado;
 exports.establecerFechaEdicion = establecerFechaEdicion;
 exports.totalTareas = totalTareas;
+exports.calcPromEstado = calcPromEstado;
 exports.cantidadDificultad = cantidadDificultad;
 exports.calculoTarea = calculoTarea;
 const Tarea_1 = require("../clases/Tarea");
@@ -59,8 +58,8 @@ function quitarPapelera(tareaSelect, tareas) {
 }
 // vaciar papelera 
 function vaciarPapelera(tareas) {
-    const nuevo_array = tareas.filter(t => t.papelera == false);
-    return nuevo_array;
+    const nuevoArray = tareas.filter(t => t.papelera == false);
+    return nuevoArray;
 }
 //Buscar Tarea
 //Buscar por Titulo
@@ -80,29 +79,27 @@ function buscarDificultad(dificultad, arrayTareas) {
     return arrayTareas.filter(t => t.dificultad === dificultad);
 }
 // Editar Tarea
-function selccionarConicidencia(coincidencias, id) {
-    return coincidencias.filter(t => t.id == id)[0];
-}
 function crearCambios(tareaAeditar, datos) {
     return { ...tareaAeditar, ...datos };
-}
-// estadisticas 
-// promedio estados 
-function promEstado(tareas) {
-    const pendiente = (tareas.filter(t => t.estado == "Pendiente").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
-    const enProceso = (tareas.filter(t => t.estado == "En Proceso").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
-    const terminado = (tareas.filter(t => t.estado == "Terminado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
-    const cancelado = (tareas.filter(t => t.estado == "Cancelado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;
-    return { pendiente, enProceso, terminado, cancelado };
 }
 function establecerFechaEdicion(fecha) {
     const fechaEdicion = new Date(fecha.getTime());
     return fechaEdicion.toLocaleDateString("es-AR");
 }
-//porcentaje/Cantidad tareas
+// ESTADISTICAS
 function totalTareas(tareas) {
     return tareas.filter(t => t.papelera == false).length;
 }
+// promedio estados 
+function cantEstado(tareas, estado) {
+    return tareas.filter(t => t.estado == estado && t.papelera == false).length;
+}
+function calcPromEstado(tareas, estado) {
+    const total = totalTareas(tareas);
+    const tareasEstado = cantEstado(tareas, estado);
+    return (tareasEstado * 100) / total;
+}
+//porcentaje/Cantidad tareas
 function cantidadDificultad(tareas, dificultad) {
     return tareas.filter(tarea => tarea.dificultad === dificultad).filter(t => t.papelera == false).length;
 }

@@ -24,29 +24,34 @@ import { almacenTareas } from "../../clases/AlmacenTareas";
                     const titulo= prompt("Ingrese el título o parte del titulo de la tarea a buscar: ")
                     if(!titulo)return "0";
                     buscarTareaTitulo(titulo,almacenTareas.getTareas).length > 0 ? console.table(buscarTareaTitulo(titulo,almacenTareas.getTareas)) : console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
-                    break;
+                break;
+
                 case "2":
                     limpiarPantalla();
                     const id  = prompt("Ingrese el ID de la tarea a buscar: ")
                     if(!id) return "0";
                     buscarID(id,almacenTareas.getTareas).length >= 0 ?console.table(buscarID(id,almacenTareas.getTareas)):console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
-                    break;
+                break;
+
                 case "3":
                     limpiarPantalla();
                     let opEstado:string=await menuEstado();
                     buscarEstado(opEstado,almacenTareas.getTareas).length>0?console.table(buscarEstado(opEstado,almacenTareas.getTareas)):console.log("❌❌ No hay tareas con ese Estado aun ❌❌");
-                    break;
+                break;
+
                 case "4":
                     limpiarPantalla();
                     let opDificultad:string= await menuDificultad();
                     buscarDificultad(opDificultad,almacenTareas.getTareas).length>0?console.table(buscarDificultad(opDificultad,almacenTareas.getTareas)):console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
-                    break;
+                break;
                 case "0":
-                    return;
+                    
+                return;
+
                 default:
                     limpiarPantalla();
                     console.log("❌❌ Opción inválida ❌❌");
-                    return;
+                return;
             }
         }while(opcionBusqueda != "0")
     }

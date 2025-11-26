@@ -3,12 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.menuNuevaTarea = menuNuevaTarea;
 const Reportes_1 = require("../Reportes");
 const AlmacenTareas_1 = require("../../clases/AlmacenTareas");
-const path = require("path");
 // @ts-ignore
 const promptSync = require("prompt-sync");
 const fs = require("fs");
 const funciones_sistema_1 = require("../funciones_sistema");
-function menuNuevaTarea(id, edit) {
+const prompt = promptSync();
+function menuNuevaTarea(id) {
     const newId = id;
     const titulo = prompt("Titulo: ") || `Tarea[${id}]`;
     const desc = prompt("Descripcion: ") || "";
@@ -18,8 +18,8 @@ function menuNuevaTarea(id, edit) {
     const papelera = false;
     const tarea = (0, Reportes_1.nuevaTarea)(newId, titulo, desc, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera);
     AlmacenTareas_1.almacenTareas.agregar(tarea);
-    console.log("✅ Nueva tarea creada!!  ");
     fs.writeFileSync((0, funciones_sistema_1.obtenerPathArchivo)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
+    console.log("✅ Nueva tarea creada!!  ");
 }
 function validaciones() {
     // Validar dificultad
@@ -27,7 +27,7 @@ function validaciones() {
     const opcionDificultad = prompt("Dificultad: ") || "1";
     const dificultad = (0, Reportes_1.validarDificultad)(opcionDificultad) || "Facil";
     // Validar estado
-    console.log("[1] Pendiente", "[2] En Proceso", "[3] Cancelado", "[4] Terminado");
+    console.log("[1] Pendiente", "[2] En Proceso", "[3] Terminado", "[4] Cancelado");
     const opcionEstado = prompt("Estado: ") || "1";
     const estado = (0, Reportes_1.validarEstado)(opcionEstado) || "Pendiente";
     // Validar Vencimiento
@@ -36,5 +36,3 @@ function validaciones() {
     const vencimiento = (0, Reportes_1.establecerVencimiento)(dias, new Date());
     return { dificultad, estado, vencimiento };
 }
-const txt = path.join(__dirname);
-const prompt = promptSync();

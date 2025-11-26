@@ -10,7 +10,7 @@ const fs = require("fs");
 const funciones_sistema_js_1 = require("../funciones_sistema.js");
 const prompt = promptSync();
 async function menuEditarTarea() {
-    console.clear();
+    (0, funciones_sistema_js_1.limpiarPantalla)();
     console.log("EDITAR TAREA");
     // Buscar tarea
     let tareaAEditar = await (0, funciones_sistema_js_1.menuSelectTarea)(AlmacenTareas_js_1.almacenTareas.getTareas, false);

@@ -20,6 +20,7 @@ export function obtenerPathArchivo() {
 
 // Carga las tareas en el array de tareas
 export function cargarTareas(){
+    // convierte lo del archivo txt en Json
     const cargadas = JSON.parse(fs.readFileSync(obtenerPathArchivo(),"utf-8"));
     for (const t of cargadas) {
        almacenTareas.agregar(t);

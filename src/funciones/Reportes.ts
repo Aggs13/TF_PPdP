@@ -58,8 +58,8 @@ export function quitarPapelera(tareaSelect:Tarea,tareas:Tarea[]){
 
 // vaciar papelera 
 export function vaciarPapelera(tareas:Tarea[]){
-    const nuevo_array = tareas.filter(t => t.papelera == false);
-    return nuevo_array;
+    const nuevoArray = tareas.filter(t => t.papelera == false);
+    return nuevoArray;
 }
 
 //Buscar Tarea
@@ -84,46 +84,43 @@ export function vaciarPapelera(tareas:Tarea[]){
 
 
 // Editar Tarea
-export function selccionarConicidencia(coincidencias:Tarea[],id:number){
-  return coincidencias.filter(t => t.id == id)[0]
-}
 
 export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
   return{...tareaAeditar,...datos}
 }
 
-
-// ESTADISTICAS
-
-// promedio estados 
-export function promEstado(tareas:Tarea[]){
-
-    
-
-    const pendiente:number =( tareas.filter(t => t.estado == "Pendiente").filter(t => t.papelera == false).length * 100)/ tareas.filter(t => t.papelera == false).length
-    const enProceso:number =(tareas.filter(t => t.estado == "En Proceso").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
-    const terminado:number =(tareas.filter(t => t.estado == "Terminado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
-    const cancelado:number =(tareas.filter(t => t.estado == "Cancelado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
-
-    return{pendiente,enProceso,terminado,cancelado}
-
-}
-
-
-
 export function establecerFechaEdicion(fecha:Date){
     const fechaEdicion = new Date(fecha.getTime());
     return fechaEdicion.toLocaleDateString("es-AR");
 }
+
+// ESTADISTICAS
+
+export function totalTareas(tareas: Tarea[]){
+    return tareas.filter(t=>t.papelera==false).length
+}
+
+
+// promedio estados 
+function cantEstado (tareas:Tarea[],estado:string){
+    return tareas.filter(t => t.estado == estado && t.papelera == false).length
+}
+
+
+export function calcPromEstado(tareas:Tarea[],estado:string){
+    const total:number = totalTareas(tareas)
+    const tareasEstado = cantEstado(tareas,estado)
+    return (tareasEstado * 100) / total
+}
+
 //porcentaje/Cantidad tareas
-    export function totalTareas(tareas: Tarea[]){
-        return tareas.filter(t=>t.papelera==false).length
-    }
+
     export function cantidadDificultad(tareas:Tarea[],dificultad:string){
         return tareas.filter(tarea=> tarea.dificultad === dificultad).filter(t=>t.papelera==false).length
     }
+
     export function calculoTarea(tareas:Tarea[],dificultad:string){
-        const total:number= totalTareas(tareas);
-        const calculoDIf:number=cantidadDificultad(tareas,dificultad)
+        const total:number = totalTareas(tareas);
+        const calculoDIf:number = cantidadDificultad(tareas,dificultad)
         return (calculoDIf*100)/total;
     }

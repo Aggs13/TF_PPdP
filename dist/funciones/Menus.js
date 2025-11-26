@@ -13,6 +13,7 @@ const papelera_menu_1 = require("./menus_carpeta/papelera_menu");
 const buscar_tarea_menu_1 = require("./menus_carpeta/buscar_tarea_menu");
 const ver_tarea_menu_1 = require("./menus_carpeta/ver_tarea_menu");
 const prompt = promptSync();
+// se cargan las tareas en el array
 (0, funciones_sistema_1.cargarTareas)();
 async function menu_principal() {
     let op;
@@ -29,7 +30,7 @@ async function menu_principal() {
                 (0, funciones_sistema_1.limpiarPantalla)();
                 console.log("NUEVA TAREA");
                 const id = parseInt(crypto.randomUUID().slice(0, 4), 16);
-                (0, nueva_tarea_menu_1.menuNuevaTarea)(id, false);
+                (0, nueva_tarea_menu_1.menuNuevaTarea)(id);
                 break;
             case "3":
                 (0, funciones_sistema_1.limpiarPantalla)();

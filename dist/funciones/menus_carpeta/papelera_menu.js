@@ -32,7 +32,6 @@ async function menuPapelera() {
             break;
         default:
             return;
-            break;
     }
 }
 async function menuMoverAPalera() {
@@ -40,8 +39,7 @@ async function menuMoverAPalera() {
     const tareaSelec = await (0, funciones_sistema_1.menuSelectTarea)(AlmacenTareas_1.almacenTareas.getTareas, false);
     if (!tareaSelec)
         return;
-    const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
-    const nuevoArray = (0, Reportes_1.moverPapelera)(tareaSelec, tareasActuales);
+    const nuevoArray = (0, Reportes_1.moverPapelera)(tareaSelec, AlmacenTareas_1.almacenTareas.getTareas);
     AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;
     fs.writeFileSync((0, funciones_sistema_1.obtenerPathArchivo)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
     console.log(`✅ Tarea a la pepelera!! -> 🚮 `);

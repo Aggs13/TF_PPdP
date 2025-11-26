@@ -13,6 +13,7 @@ import { buscarTarea } from "./menus_carpeta/buscar_tarea_menu";
 import { menuVerTarea } from "./menus_carpeta/ver_tarea_menu";
 const prompt = promptSync();
 
+// se cargan las tareas en el array
 cargarTareas();
 export async function menu_principal(){
     let op:string;    
@@ -33,7 +34,7 @@ export async function menu_principal(){
                 limpiarPantalla();
                 console.log("NUEVA TAREA")
                 const id:number = parseInt(crypto.randomUUID().slice(0, 4), 16);
-                menuNuevaTarea(id,false);
+                menuNuevaTarea(id);
             break;
 
             case "3":
