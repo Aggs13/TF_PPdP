@@ -14,7 +14,7 @@ export async function menuVerTarea(){
         opcion = await subMenu();
         switch(opcion){
             case "1":
-                const tareaDet = await tareasDetalladas(tareas)
+                const tareaDet = await menuDatalladas(tareas)
                 console.table([tareaDet]);
                 break;
             case "2":
