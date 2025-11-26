@@ -41,5 +41,5 @@ function menuCambiarValores(tareaAEditar, id) {
     tareaAEditar = (0, Reportes_js_1.crearCambios)(tareaAEditar, datosArray);
     const index = AlmacenTareas_js_1.almacenTareas.getTareas.findIndex(t => t.id == id);
     AlmacenTareas_js_1.almacenTareas.getTareas[index] = tareaAEditar;
-    fs.writeFileSync((0, funciones_sistema_js_1.obtener_path)(), JSON.stringify(AlmacenTareas_js_1.almacenTareas.getTareas, null, 2));
+    fs.writeFileSync((0, funciones_sistema_js_1.obtenerPathArchivo)(), JSON.stringify(AlmacenTareas_js_1.almacenTareas.getTareas, null, 2));
 }

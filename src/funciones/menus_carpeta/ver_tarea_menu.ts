@@ -22,7 +22,7 @@ export async function menuVerTarea(){
 
             case "2":
                 limpiarPantalla()
-                const prioridad=tareasPrioridad(tareas);
+                const prioridad=tareasPrioridad(tareas,new Date());
                 if(!prioridad|| prioridad.length==0){
                     console.log("Aun No Hay Tareas de Alta Prioridad")
                     return;
@@ -87,17 +87,19 @@ async function menuDatalladas(tareasFiltradas:Tarea[]) {
 }
 
 //Tareas Prioridad
-function tareasPrioridad(tareasFiltradas:Tarea[]){
-   const vencidas = verificarVencimiento(tareasFiltradas, new Date());
+
+function tareasPrioridad(tareasFiltradas:Tarea[], fecha:Date){
+   const vencidas = verificarVencimiento(tareasFiltradas, fecha);
   if (vencidas.length > 0) {
     return vencidas;
   }
-  const tareasDificiles = buscarDificultad("Dificil");
+  const tareasDificiles = buscarDificultad("Dificil",tareasFiltradas);
   if (!tareasDificiles || tareasDificiles.length === 0) {
     return null;
   }
   return tareasDificiles;
 }
+
 function verificarVencimiento(tareasFiltradas:Tarea[], fecha:Date){
    return tareasFiltradas.filter(tarea=> new Date(tarea.vencimiento)>fecha)
 }

@@ -17,6 +17,7 @@ async function menuPapelera() {
     switch (op) {
         case "1":
             AlmacenTareas_1.almacenTareas.setTareas = (0, Reportes_1.vaciarPapelera)(AlmacenTareas_1.almacenTareas.getTareas);
+            fs.writeFileSync((0, funciones_sistema_1.obtenerPathArchivo)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
             console.log("✅ Papelera Vaciada!! ");
             break;
         case "2":
@@ -25,7 +26,7 @@ async function menuPapelera() {
                 return;
             const nuevoArray = (0, Reportes_1.quitarPapelera)(tarea, AlmacenTareas_1.almacenTareas.getTareas);
             AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;
-            fs.writeFileSync((0, funciones_sistema_1.obtener_path)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
+            fs.writeFileSync((0, funciones_sistema_1.obtenerPathArchivo)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
             console.log("✅ Tarea restaurada! -> ♻");
             prompt("voler [ENTER] > ");
             break;
@@ -42,7 +43,7 @@ async function menuMoverAPalera() {
     const tareasActuales = AlmacenTareas_1.almacenTareas.getTareas;
     const nuevoArray = (0, Reportes_1.moverPapelera)(tareaSelec, tareasActuales);
     AlmacenTareas_1.almacenTareas.setTareas = nuevoArray;
-    fs.writeFileSync((0, funciones_sistema_1.obtener_path)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
+    fs.writeFileSync((0, funciones_sistema_1.obtenerPathArchivo)(), JSON.stringify(AlmacenTareas_1.almacenTareas.getTareas, null, 2));
     console.log(`✅ Tarea a la pepelera!! -> 🚮 `);
 }
 async function seleccion() {

@@ -4,8 +4,8 @@ const inquirer = require("inquirer");
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
-import { moverPapelera, quitarPapelera, vaciarPapelera } from "../Reportes";
-import { menuSelectTarea, obtener_path } from "../funciones_sistema";
+import { buscarID, moverPapelera, quitarPapelera, vaciarPapelera } from "../Reportes";
+import { menuSelectTarea, obtenerPathArchivo } from "../funciones_sistema";
 import { Tarea } from "../../clases/Tarea";
 const prompt = promptSync();
 
@@ -16,6 +16,7 @@ export async function menuPapelera(){
     switch(op){
         case"1":
           almacenTareas.setTareas = vaciarPapelera(almacenTareas.getTareas)
+          fs.writeFileSync(obtenerPathArchivo(), JSON.stringify(almacenTareas.getTareas,null, 2));
           console.log("✅ Papelera Vaciada!! ");
         break;
 
@@ -28,12 +29,11 @@ export async function menuPapelera(){
           const nuevoArray = quitarPapelera(tarea,almacenTareas.getTareas)
           almacenTareas.setTareas = nuevoArray;
 
-          fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas,null, 2));
+          fs.writeFileSync(obtenerPathArchivo(), JSON.stringify(almacenTareas.getTareas,null, 2));
           console.log("✅ Tarea restaurada! -> ♻");
           prompt("voler [ENTER] > ");
           
         break;
-
         default:
             return
         break;
@@ -43,18 +43,20 @@ export async function menuPapelera(){
 
 
 export async function menuMoverAPalera(){
-    console.log("Selecciones una tarea")
-    const tareaSelec:Tarea|undefined =  await menuSelectTarea(almacenTareas.getTareas,false)
+  console.log("Selecciones una tarea")
+  const tareaSelec:Tarea|undefined =  await menuSelectTarea(almacenTareas.getTareas,false)
 
-    if (!tareaSelec) return;
+  if (!tareaSelec) return;
 
-    const tareasActuales = almacenTareas.getTareas;
-    const nuevoArray = moverPapelera(tareaSelec,tareasActuales);
+  const tareasActuales = almacenTareas.getTareas;
+  const nuevoArray = moverPapelera(tareaSelec,tareasActuales);
 
-    almacenTareas.setTareas = nuevoArray;
-    fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas,null, 2));
-    console.log(`✅ Tarea a la pepelera!! -> 🚮 `);
+  almacenTareas.setTareas = nuevoArray;
+  fs.writeFileSync(obtenerPathArchivo(), JSON.stringify(almacenTareas.getTareas,null, 2));
+  console.log(`✅ Tarea a la pepelera!! -> 🚮 `);
 }
+
+
 
 
 

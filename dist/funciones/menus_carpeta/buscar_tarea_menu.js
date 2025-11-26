@@ -9,6 +9,7 @@ const listaEstados = ["Pendiente", "En Proceso", "Terminada", "Cancelada"];
 // @ts-ignore
 const promptSync = require("prompt-sync");
 const funciones_sistema_1 = require("../funciones_sistema");
+const AlmacenTareas_1 = require("../../clases/AlmacenTareas");
 const prompt = promptSync();
 async function buscarTarea() {
     let opcionBusqueda;
@@ -20,24 +21,24 @@ async function buscarTarea() {
                 const titulo = prompt("Ingrese el título o parte del titulo de la tarea a buscar: ");
                 if (!titulo)
                     return "0";
-                (0, Reportes_1.buscarTareaTitulo)(titulo).length > 0 ? console.table((0, Reportes_1.buscarTareaTitulo)(titulo)) : console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
+                (0, Reportes_1.buscarTareaTitulo)(titulo, AlmacenTareas_1.almacenTareas.getTareas).length > 0 ? console.table((0, Reportes_1.buscarTareaTitulo)(titulo, AlmacenTareas_1.almacenTareas.getTareas)) : console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 const id = prompt("Ingrese el ID de la tarea a buscar: ");
                 if (!id)
                     return "0";
-                (0, Reportes_1.buscarID)(id).length >= 0 ? console.table((0, Reportes_1.buscarID)(id)) : console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
+                (0, Reportes_1.buscarID)(id, AlmacenTareas_1.almacenTareas.getTareas).length >= 0 ? console.table((0, Reportes_1.buscarID)(id, AlmacenTareas_1.almacenTareas.getTareas)) : console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
                 break;
             case "3":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 let opEstado = await menuEstado();
-                (0, Reportes_1.buscarEstado)(opEstado).length > 0 ? console.table((0, Reportes_1.buscarEstado)(opEstado)) : console.log("❌❌ No hay tareas con ese Estado aun ❌❌");
+                (0, Reportes_1.buscarEstado)(opEstado, AlmacenTareas_1.almacenTareas.getTareas).length > 0 ? console.table((0, Reportes_1.buscarEstado)(opEstado, AlmacenTareas_1.almacenTareas.getTareas)) : console.log("❌❌ No hay tareas con ese Estado aun ❌❌");
                 break;
             case "4":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 let opDificultad = await menuDificultad();
-                (0, Reportes_1.buscarDificultad)(opDificultad).length > 0 ? console.table((0, Reportes_1.buscarDificultad)(opDificultad)) : console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
+                (0, Reportes_1.buscarDificultad)(opDificultad, AlmacenTareas_1.almacenTareas.getTareas).length > 0 ? console.table((0, Reportes_1.buscarDificultad)(opDificultad, AlmacenTareas_1.almacenTareas.getTareas)) : console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
                 break;
             case "0":
                 return;

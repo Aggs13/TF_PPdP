@@ -6,7 +6,7 @@ import path = require("path");
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
-import { obtener_path } from "../funciones_sistema";
+import { obtenerPathArchivo } from "../funciones_sistema";
 
 
 
@@ -24,7 +24,7 @@ export function menuNuevaTarea(id:number,edit:boolean){
     const tarea:Tarea = nuevaTarea(newId,titulo,desc,estado,creacion,ultimaEdicion,vencimiento,dificultad,papelera);
     almacenTareas.agregar(tarea)
     console.log("✅ Nueva tarea creada!!  ");
-    fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas,null, 2))
+    fs.writeFileSync(obtenerPathArchivo(), JSON.stringify(almacenTareas.getTareas,null, 2))
 
 }
 

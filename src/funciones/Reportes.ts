@@ -64,27 +64,26 @@ export function vaciarPapelera(tareas:Tarea[]){
 
 //Buscar Tarea
     //Buscar por Titulo
-    export function buscarTareaTitulo(titulo: String){
-        return almacenTareas.getTareas.filter(t => t.papelera == false && t.titulo.toLowerCase().includes(titulo.toLowerCase()))
+    export function buscarTareaTitulo(titulo: String,arrayTareas:Tarea[]){
+        return arrayTareas.filter(t => t.papelera == false && t.titulo.toLowerCase().includes(titulo.toLowerCase()))
     }
     //Buscar por ID
-    export function buscarID(id:number){
+    export function buscarID(id:number,arrayTareas:Tarea[]){
         
-        return almacenTareas.getTareas.filter(t=> t.id == id)
+        return arrayTareas.filter(t=> t.id == id)
     }
     //Buscar por Estado
-    export function buscarEstado(estado: string){
-        return almacenTareas.getTareas.filter(t => t.estado === estado)
+    export function buscarEstado(estado: string,arrayTareas:Tarea[]){
+        return arrayTareas.filter(t => t.estado === estado)
     }
     //Buscar por Dificultad
-    export function buscarDificultad(dificultad:string){
-        return almacenTareas.getTareas.filter(t=> t.dificultad=== dificultad)
+    export function buscarDificultad(dificultad:string,arrayTareas:Tarea[]){
+        return arrayTareas.filter(t=> t.dificultad=== dificultad)
     }
 
 
 
 // Editar Tarea
-
 export function selccionarConicidencia(coincidencias:Tarea[],id:number){
   return coincidencias.filter(t => t.id == id)[0]
 }
@@ -94,10 +93,13 @@ export function crearCambios(tareaAeditar:Tarea,datos:Partial<Tarea>){
 }
 
 
-// estadisticas 
+// ESTADISTICAS
 
 // promedio estados 
 export function promEstado(tareas:Tarea[]){
+
+    
+
     const pendiente:number =( tareas.filter(t => t.estado == "Pendiente").filter(t => t.papelera == false).length * 100)/ tareas.filter(t => t.papelera == false).length
     const enProceso:number =(tareas.filter(t => t.estado == "En Proceso").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length
     const terminado:number =(tareas.filter(t => t.estado == "Terminado").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length

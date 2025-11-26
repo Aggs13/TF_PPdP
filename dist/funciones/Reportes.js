@@ -20,7 +20,6 @@ exports.totalTareas = totalTareas;
 exports.cantidadDificultad = cantidadDificultad;
 exports.calculoTarea = calculoTarea;
 const Tarea_1 = require("../clases/Tarea");
-const AlmacenTareas_1 = require("../clases/AlmacenTareas");
 function nuevaTarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera) {
     const tarea = new Tarea_1.Tarea(id, titulo, descripcion, estado, creacion, ultimaEdicion, vencimiento, dificultad, papelera);
     return tarea;
@@ -65,20 +64,20 @@ function vaciarPapelera(tareas) {
 }
 //Buscar Tarea
 //Buscar por Titulo
-function buscarTareaTitulo(titulo) {
-    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.papelera == false && t.titulo.toLowerCase().includes(titulo.toLowerCase()));
+function buscarTareaTitulo(titulo, arrayTareas) {
+    return arrayTareas.filter(t => t.papelera == false && t.titulo.toLowerCase().includes(titulo.toLowerCase()));
 }
 //Buscar por ID
-function buscarID(id) {
-    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.id == id);
+function buscarID(id, arrayTareas) {
+    return arrayTareas.filter(t => t.id == id);
 }
 //Buscar por Estado
-function buscarEstado(estado) {
-    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.estado === estado);
+function buscarEstado(estado, arrayTareas) {
+    return arrayTareas.filter(t => t.estado === estado);
 }
 //Buscar por Dificultad
-function buscarDificultad(dificultad) {
-    return AlmacenTareas_1.almacenTareas.getTareas.filter(t => t.dificultad === dificultad);
+function buscarDificultad(dificultad, arrayTareas) {
+    return arrayTareas.filter(t => t.dificultad === dificultad);
 }
 // Editar Tarea
 function selccionarConicidencia(coincidencias, id) {
