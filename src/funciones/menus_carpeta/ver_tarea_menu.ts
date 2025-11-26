@@ -15,7 +15,7 @@ export async function menuVerTarea(){
         opcion = await subMenu();
         switch(opcion){
             case "1":
-                const tareaDet = await tareasDetalladas(tareas)
+                const tareaDet = await menuDatalladas(tareas);
                 limpiarPantalla()
                 console.table([tareaDet]);
             break;
@@ -65,11 +65,6 @@ async function subMenu(){
               return opcion;
 }
 //Tareas Detalladas
-async function tareasDetalladas(tareasFiltradas: Tarea[]) {
-    const tarea=await menuDatalladas(tareasFiltradas)
-    return tarea;
-}
-
 async function menuDatalladas(tareasFiltradas:Tarea[]) {
     const{opcion}= await inquirer.prompt([
         {
