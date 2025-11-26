@@ -5,7 +5,7 @@ import { validarDificultad, validarEstado, establecerVencimiento, buscarTareaTit
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import * as fs from "fs";
-import { menuSelectTarea, obtener_path } from "../funciones_sistema.js";
+import { menuSelectTarea, obtenerPathArchivo } from "../funciones_sistema.js";
 //@ts-ignore
 import * as inquirer from "inquirer";
 
@@ -59,7 +59,7 @@ function menuCambiarValores(tareaAEditar:Tarea,id:number){
   const index = almacenTareas.getTareas.findIndex(t=> t.id == id)
   almacenTareas.getTareas[index] = tareaAEditar
 
-  fs.writeFileSync(obtener_path(), JSON.stringify(almacenTareas.getTareas, null, 2));
+  fs.writeFileSync(obtenerPathArchivo(), JSON.stringify(almacenTareas.getTareas, null, 2));
 
 }
 

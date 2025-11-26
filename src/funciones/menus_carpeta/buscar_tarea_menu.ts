@@ -9,6 +9,7 @@ const listaEstados: string[] = ["Pendiente", "En Proceso", "Terminada", "Cancela
 // @ts-ignore
 import * as promptSync from "prompt-sync";
 import { limpiarPantalla } from "../funciones_sistema";
+import { almacenTareas } from "../../clases/AlmacenTareas";
  const prompt = promptSync();
  
  
@@ -22,23 +23,23 @@ import { limpiarPantalla } from "../funciones_sistema";
                     limpiarPantalla();
                     const titulo= prompt("Ingrese el título o parte del titulo de la tarea a buscar: ")
                     if(!titulo)return "0";
-                    buscarTareaTitulo(titulo).length>0?console.table(buscarTareaTitulo(titulo)):console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
+                    buscarTareaTitulo(titulo,almacenTareas.getTareas).length > 0 ? console.table(buscarTareaTitulo(titulo,almacenTareas.getTareas)) : console.log("❌❌ No se encontraron tareas con ese titulo ❌❌");
                     break;
                 case "2":
                     limpiarPantalla();
                     const id  = prompt("Ingrese el ID de la tarea a buscar: ")
                     if(!id) return "0";
-                    buscarID(id).length>=0?console.table(buscarID(id)):console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
+                    buscarID(id,almacenTareas.getTareas).length >= 0 ?console.table(buscarID(id,almacenTareas.getTareas)):console.log("❌❌ No se encontraron tareas con ese ID ❌❌");
                     break;
                 case "3":
                     limpiarPantalla();
                     let opEstado:string=await menuEstado();
-                    buscarEstado(opEstado).length>0?console.table(buscarEstado(opEstado)):console.log("❌❌ No hay tareas con ese Estado aun ❌❌");
+                    buscarEstado(opEstado,almacenTareas.getTareas).length>0?console.table(buscarEstado(opEstado,almacenTareas.getTareas)):console.log("❌❌ No hay tareas con ese Estado aun ❌❌");
                     break;
                 case "4":
                     limpiarPantalla();
                     let opDificultad:string= await menuDificultad();
-                    buscarDificultad(opDificultad).length>0?console.table(buscarDificultad(opDificultad)):console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
+                    buscarDificultad(opDificultad,almacenTareas.getTareas).length>0?console.table(buscarDificultad(opDificultad,almacenTareas.getTareas)):console.log("❌❌ No hay tareas con esa Dificultad aun ❌❌");
                     break;
                 case "0":
                     return;
@@ -49,6 +50,8 @@ import { limpiarPantalla } from "../funciones_sistema";
             }
         }while(opcionBusqueda != "0")
     }
+
+    
 //Menu Buscar Tareas
     async function menuBuscarTarea(){
           const {opcion} = await inquirer.prompt([
@@ -67,6 +70,8 @@ import { limpiarPantalla } from "../funciones_sistema";
           ]);
           return opcion;
     }
+
+
 //Menu Estado
     async function menuEstado() {
         const{opcion}= await inquirer.prompt([

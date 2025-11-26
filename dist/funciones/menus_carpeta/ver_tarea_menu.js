@@ -20,7 +20,7 @@ async function menuVerTarea() {
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();
-                const prioridad = tareasPrioridad(tareas);
+                const prioridad = tareasPrioridad(tareas, new Date());
                 if (!prioridad || prioridad.length == 0) {
                     console.log("Aun No Hay Tareas de Alta Prioridad");
                     return;
@@ -28,7 +28,7 @@ async function menuVerTarea() {
                 console.table(prioridad);
                 break;
             case "3":
-                console.log("Total de Taras: ", (0, Reportes_1.totalTareas)(AlmacenTareas_1.almacenTareas.getTareas) - 1);
+                console.log("Total de Taras: ", (0, Reportes_1.totalTareas)(AlmacenTareas_1.almacenTareas.getTareas));
                 console.log("Tareas Faciles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Facil").toFixed(3), "%");
                 console.log("Tareas Normales: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Normal").toFixed(3), "%");
                 console.log("Tareas Dificiles: ", (0, Reportes_1.calculoTarea)(AlmacenTareas_1.almacenTareas.getTareas, "Dificil").toFixed(3), "%");
@@ -80,12 +80,12 @@ async function menuDatalladas(tareasFiltradas) {
     return opcion;
 }
 //Tareas Prioridad
-function tareasPrioridad(tareasFiltradas) {
-    const vencidas = verificarVencimiento(tareasFiltradas, new Date());
+function tareasPrioridad(tareasFiltradas, fecha) {
+    const vencidas = verificarVencimiento(tareasFiltradas, fecha);
     if (vencidas.length > 0) {
         return vencidas;
     }
-    const tareasDificiles = (0, Reportes_1.buscarDificultad)("Dificil");
+    const tareasDificiles = (0, Reportes_1.buscarDificultad)("Dificil", tareasFiltradas);
     if (!tareasDificiles || tareasDificiles.length === 0) {
         return null;
     }
