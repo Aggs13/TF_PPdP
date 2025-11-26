@@ -13,16 +13,18 @@ const inquirer = require("inquirer");
 function limpiarPantalla() {
     process.stdout.write('\x1Bc');
 }
-// obtiene la ubicacion del archivo
+// obtiene la ubicacion del archivo .txt
 function obtenerPathArchivo() {
     return path.join(__dirname, "../../archivo_Tareas.txt");
 }
+// Carga las tareas en el array de tareas
 function cargarTareas() {
     const cargadas = JSON.parse(fs.readFileSync(obtenerPathArchivo(), "utf-8"));
     for (const t of cargadas) {
         AlmacenTareas_1.almacenTareas.agregar(t);
     }
 }
+// Menu para seleccionar tareas
 async function menuSelectTarea(tareas, papelera) {
     const opcionesTareas = tareas.filter(t => t.papelera === papelera);
     const { opcion } = await inquirer.prompt([

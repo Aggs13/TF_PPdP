@@ -86,7 +86,7 @@ function selccionarConicidencia(coincidencias, id) {
 function crearCambios(tareaAeditar, datos) {
     return { ...tareaAeditar, ...datos };
 }
-// estadisticas 
+// ESTADISTICAS
 // promedio estados 
 function promEstado(tareas) {
     const pendiente = (tareas.filter(t => t.estado == "Pendiente").filter(t => t.papelera == false).length * 100) / tareas.filter(t => t.papelera == false).length;

@@ -15,17 +15,20 @@ export async function menuVerTarea(){
         opcion = await subMenu();
         switch(opcion){
             case "1":
+                if(tareas.length ==0){
+                   console.log("Aun no Hay Tareas, o Estan en Papelera")
+                }else{
                 const tareaDet = await menuDatalladas(tareas);
                 limpiarPantalla()
                 console.table([tareaDet]);
+                }
             break;
 
             case "2":
                 limpiarPantalla()
                 const prioridad=tareasPrioridad(tareas,new Date());
                 if(!prioridad|| prioridad.length==0){
-                    console.log("Aun No Hay Tareas de Alta Prioridad")
-                    return;
+                    console.log("Aun No Hay Tareas de Alta Prioridad");
                 }
                 console.table(prioridad);
                 break;
@@ -95,6 +98,10 @@ function tareasPrioridad(tareasFiltradas:Tarea[], fecha:Date){
   return tareasDificiles;
 }
 
-function verificarVencimiento(tareasFiltradas:Tarea[], fecha:Date){
-   return tareasFiltradas.filter(tarea=> new Date(tarea.vencimiento)>fecha)
+function verificarVencimiento(tareasFiltradas: Tarea[], fecha: Date) {
+  return tareasFiltradas.filter(tarea => {
+    const [dia, mes, año] = tarea.vencimiento.split("/").map(Number);
+    const fechaTarea = new Date(año, mes - 1, dia);
+    return fechaTarea < fecha; 
+  });
 }

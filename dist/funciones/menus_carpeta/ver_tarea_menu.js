@@ -14,16 +14,20 @@ async function menuVerTarea() {
         opcion = await subMenu();
         switch (opcion) {
             case "1":
-                const tareaDet = await tareasDetalladas(tareas);
-                (0, funciones_sistema_1.limpiarPantalla)();
-                console.table([tareaDet]);
+                if (tareas.length == 0) {
+                    console.log("Aun no Hay Tareas, o Estan en Papelera");
+                }
+                else {
+                    const tareaDet = await menuDatalladas(tareas);
+                    (0, funciones_sistema_1.limpiarPantalla)();
+                    console.table([tareaDet]);
+                }
                 break;
             case "2":
                 (0, funciones_sistema_1.limpiarPantalla)();
                 const prioridad = tareasPrioridad(tareas, new Date());
                 if (!prioridad || prioridad.length == 0) {
                     console.log("Aun No Hay Tareas de Alta Prioridad");
-                    return;
                 }
                 console.table(prioridad);
                 break;
@@ -61,10 +65,6 @@ async function subMenu() {
     return opcion;
 }
 //Tareas Detalladas
-async function tareasDetalladas(tareasFiltradas) {
-    const tarea = await menuDatalladas(tareasFiltradas);
-    return tarea;
-}
 async function menuDatalladas(tareasFiltradas) {
     const { opcion } = await inquirer.prompt([
         {
@@ -92,5 +92,9 @@ function tareasPrioridad(tareasFiltradas, fecha) {
     return tareasDificiles;
 }
 function verificarVencimiento(tareasFiltradas, fecha) {
-    return tareasFiltradas.filter(tarea => new Date(tarea.vencimiento) > fecha);
+    return tareasFiltradas.filter(tarea => {
+        const [dia, mes, año] = tarea.vencimiento.split("/").map(Number);
+        const fechaTarea = new Date(año, mes - 1, dia);
+        return fechaTarea < fecha;
+    });
 }
