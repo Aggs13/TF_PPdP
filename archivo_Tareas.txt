@@ -1,79 +1,13 @@
 [
   {
-    "id": 28123,
-    "titulo": "Tarea Vencida",
-    "descripcion": "",
-    "estado": "En Proceso",
-    "dificultad": "Normal",
-    "creacion": "26/11/2025",
-    "ultima_Edicion": "26/11/2025",
-    "vencimiento": "13/1/2025",
-    "papelera": false
-  },
-  {
-    "id": 9035,
-    "titulo": "Tarea[9035]",
-    "descripcion": "",
-    "estado": "Terminado",
-    "dificultad": "Facil",
-    "creacion": "26/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "6/12/2025",
-    "papelera": false
-  },
-  {
-    "id": 41772,
-    "titulo": "Tarea[41772]",
-    "descripcion": "",
-    "estado": "Terminado",
-    "dificultad": "Facil",
-    "creacion": "26/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "6/12/2025",
-    "papelera": false
-  },
-  {
-    "id": 65274,
-    "titulo": "Tarea[65274]",
-    "descripcion": "",
-    "estado": "Cancelado",
-    "dificultad": "Facil",
-    "creacion": "26/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "6/12/2025",
-    "papelera": false
-  },
-  {
-    "id": 18377,
-    "titulo": "Tarea[18377]",
+    "id": 35399,
+    "titulo": "Tarea[35399]",
     "descripcion": "",
     "estado": "Pendiente",
     "dificultad": "Facil",
     "creacion": "26/11/2025",
     "ultima_Edicion": "",
-    "vencimiento": "6/12/2025",
-    "papelera": false
-  },
-  {
-    "id": 51158,
-    "titulo": "Tarea[51158]",
-    "descripcion": "",
-    "estado": "Pendiente",
-    "dificultad": "Facil",
-    "creacion": "26/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "6/12/2025",
-    "papelera": false
-  },
-  {
-    "id": 12816,
-    "titulo": "Tarea[12816]",
-    "descripcion": "",
-    "estado": "Pendiente",
-    "dificultad": "Facil",
-    "creacion": "26/11/2025",
-    "ultima_Edicion": "",
-    "vencimiento": "6/12/2025",
+    "vencimiento": "18/11/2025",
     "papelera": false
   }
 ]
