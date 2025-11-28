@@ -68,15 +68,15 @@ function buscarTareaTitulo(titulo, arrayTareas) {
 }
 //Buscar por ID
 function buscarID(id, arrayTareas) {
-    return arrayTareas.filter(t => t.id == id);
+    return arrayTareas.filter(t => t.id == id && t.papelera == false);
 }
 //Buscar por Estado
 function buscarEstado(estado, arrayTareas) {
-    return arrayTareas.filter(t => t.estado === estado);
+    return arrayTareas.filter(t => t.estado === estado && t.papelera == false);
 }
 //Buscar por Dificultad
 function buscarDificultad(dificultad, arrayTareas) {
-    return arrayTareas.filter(t => t.dificultad === dificultad);
+    return arrayTareas.filter(t => t.dificultad === dificultad && t.papelera == false);
 }
 // Editar Tarea
 function crearCambios(tareaAeditar, datos) {

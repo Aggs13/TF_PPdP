@@ -5,7 +5,7 @@ exports.buscarTarea = buscarTarea;
 const inquirer = require("inquirer");
 const Reportes_1 = require("../Reportes");
 const listaDificultades = ["Facil", "Normal", "Dificil"];
-const listaEstados = ["Pendiente", "En Proceso", "Terminada", "Cancelada"];
+const listaEstados = ["Pendiente", "En Proceso", "Terminado", "Cancelado"];
 // @ts-ignore
 const promptSync = require("prompt-sync");
 const funciones_sistema_1 = require("../funciones_sistema");

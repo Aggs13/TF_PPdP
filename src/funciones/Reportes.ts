@@ -70,15 +70,15 @@ export function vaciarPapelera(tareas:Tarea[]){
     //Buscar por ID
     export function buscarID(id:number,arrayTareas:Tarea[]){
         
-        return arrayTareas.filter(t=> t.id == id)
+        return arrayTareas.filter(t=> t.id == id && t.papelera == false)
     }
     //Buscar por Estado
     export function buscarEstado(estado: string,arrayTareas:Tarea[]){
-        return arrayTareas.filter(t => t.estado === estado)
+        return arrayTareas.filter(t => t.estado === estado && t.papelera == false)
     }
     //Buscar por Dificultad
     export function buscarDificultad(dificultad:string,arrayTareas:Tarea[]){
-        return arrayTareas.filter(t=> t.dificultad=== dificultad)
+        return arrayTareas.filter(t=> t.dificultad=== dificultad && t.papelera == false)
     }
 
 
